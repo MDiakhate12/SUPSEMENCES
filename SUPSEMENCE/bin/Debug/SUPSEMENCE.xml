@@ -1,0 +1,371 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SUPSEMENCE
+</name>
+</assembly>
+<members>
+<member name="T:SUPSEMENCE.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SUPSEMENCE.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SUPSEMENCE.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.clientDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.commandeDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.contactDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.institutionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.localisationDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.magasinDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_de_productionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.productionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculationDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculation_institutionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.varieteDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.variete_institutionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_agro_ecologiqueDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_institutionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_institutionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.clientRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.commandeRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.contactRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.institutionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.localisationRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.magasinRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_de_productionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.productionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculationRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculation_institutionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.varieteRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.variete_institutionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_agro_ecologiqueRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_institutionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_institutionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.clientRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.commandeRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.contactRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.institutionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.localisationRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.magasinRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_de_productionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.productionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculationRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.speculation_institutionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.varieteRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.variete_institutionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_agro_ecologiqueRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.niveau_institutionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSet.zone_institutionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.clientTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.commandeTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.contactTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.institutionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.localisationTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.magasinTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.niveau_de_productionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.productionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.speculationTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.speculation_institutionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.varieteTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.variete_institutionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.zone_agro_ecologiqueTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.niveau_institutionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.zone_institutionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(SUPSEMENCE.semencesDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(SUPSEMENCE.semencesDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(SUPSEMENCE.semencesDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.UpdateAll(SUPSEMENCE.semencesDataSet)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:SUPSEMENCE.semencesDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+</members>
+</doc>
