@@ -1,0 +1,38 @@
+Spéculations
+
+"riz",
+"sorgho",
+"mil",
+"maïs",
+"arachide",
+"niébé",
+"oignon",
+"tomate",
+"piment",
+"jaxatu",
+"terre",
+"douce",
+"gombo",
+"aubergine"
+
+
+Production
+	Nom variété
+	Niveau produit
+	Date de production
+	Qté produite (en kg)
+	Prix unitaire variété
+	lieu_de_production
+
+Découpage_Administratif
+	Zone_agro_ecologique
+	Région
+	Département
+	Commune
+	Village
+
+Niveau_de_production
+	Nom_niveau("G0", "G1", "G2", "Prébase", "Base", "R1", "R2")
+
+
+"Sédhiou","Kédougou","Kaffrine","Louis","Dakar","Diourbel","Fatick","Kaolack","Louga","Matam","Thiès","Kolda","Ziguinchor","Tambacounda"

@@ -4,7 +4,7 @@ Public Class FormCommandes
     Private connection As MySqlConnection = DBConnection.connection
     Private Sub FormCommandes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.niveau_institution'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-        Me.ProductionTableAdapter.Fill(Me.SemencesDataSet.production)
+        'Me.ProductionTableAdapter.Fill(Me.SemencesDataSet.production)
 
         LoadCommandes()
         FillChoixClient()
@@ -33,23 +33,39 @@ Public Class FormCommandes
     'End Sub
 
     Public Sub FillChoixNiveau()
-        Dim query = "select nom_niveau, niveau_institution.id_niveau 
-                          from niveau_institution
-                          inner join niveau_de_production ndp on ndp.id_niveau=niveau_institution.id_niveau
-                          where niveau_institution.id_institution=@id_institution"
+        Dim query = "select nom_niveau, id_niveau_institution
+                            from niveau_institution ni
+                            inner join niveau_de_production n
+                            on n.id_niveau=ni.id_niveau
+                            where id_institution=@id_institution"
 
         Dim command = New MySqlCommand(query, connection)
         command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
-
         Dim dataTable = New DataTable()
         Dim dataAdapter = New MySqlDataAdapter(command)
         dataAdapter.FillAsync(dataTable)
-
         NiveauinstitutionBindingSource.DataSource = dataTable
 
         Niveau.DisplayMember = dataTable.Columns("nom_niveau").ToString()
-        Niveau.ValueMember = dataTable.Columns("id_niveau").ToString()
-        Niveau.SelectedValue = dataTable.Rows(1).Item("id_niveau").ToString()
+        Niveau.ValueMember = dataTable.Columns("id_niveau_institution").ToString()
+
+        'Dim query = "select nom_niveau, niveau_institution.id_niveau 
+        '                  from niveau_institution 
+        '                  inner join niveau_de_production ndp on ndp.id_niveau=niveau_institution.id_niveau
+        '                  where niveau_institution.id_institution=@id_institution"
+
+        'Dim command = New MySqlCommand(query, connection)
+        'command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+
+        'Dim dataTable = New DataTable()
+        'Dim dataAdapter = New MySqlDataAdapter(command)
+        'dataAdapter.FillAsync(dataTable)
+
+        'NiveauinstitutionBindingSource.DataSource = dataTable
+
+        'Niveau.DisplayMember = dataTable.Columns("nom_niveau").ToString()
+        'Niveau.ValueMember = dataTable.Columns("id_niveau").ToString()
+        'Niveau.SelectedValue = dataTable.Rows(1).Item("id_niveau").ToString()
 
     End Sub
 
@@ -79,15 +95,15 @@ Public Class FormCommandes
                                  vi.id_variete_institution = p.id_variete_institution And
                                  v.id_variete = vi.id_variete And
                                  s.id_speculation = v.id_speculation and 
-                                 p.id_niveau=@id_niveau
+                                 p.id_niveau_institution=@id_niveau_institution
                                 )"
 
         Dim command = New MySqlCommand(getProductions, connection)
         command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
-        command.Parameters.AddWithValue("@id_niveau", Niveau.SelectedValue)
+        command.Parameters.AddWithValue("@id_niveau_institution", Niveau.SelectedValue)
         Dim dataTable = New DataTable()
         Dim dataAdapter = New MySqlDataAdapter(command)
-        dataAdapter.FillAsync(dataTable)
+        dataAdapter.Fill(dataTable)
         ProductionBindingSource.DataSource = dataTable
 
 
@@ -869,19 +885,19 @@ Public Class FormCommandes
 
             Dim command = New MySqlCommand(getCommande, connection)
 
-                command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
-                command.Parameters.AddWithValue("@id_commande", id_commande.Value)
-                command.Parameters.AddWithValue("@date_enlevement_reelle", Date.Now())
+            command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+            command.Parameters.AddWithValue("@id_commande", id_commande.Value)
+            command.Parameters.AddWithValue("@date_enlevement_reelle", Date.Now())
 
-                command.ExecuteNonQuery()
+            command.ExecuteNonQuery()
 
-                LoadCommandesAEnlever()
+            LoadCommandesAEnlever()
             MessageBox.Show("Enlèvement annulé avec succés!", "Enlèvelemnt annulé", MessageBoxButtons.OK, MessageBoxIcon.Information)
             GestionEnlevementData.ClearSelection()
-                GestionEnlevementData.Rows(0).Selected = True
-            Else
-                Return
-            End If
+            GestionEnlevementData.Rows(0).Selected = True
+        Else
+            Return
+        End If
 
     End Sub
 End Class

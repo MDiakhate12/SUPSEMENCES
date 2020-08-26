@@ -73,8 +73,6 @@ Partial Class FormCommandes
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Speculation = New System.Windows.Forms.ComboBox()
-        Me.ProductionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SemencesDataSet = New SUPSEMENCE.semencesDataSet()
         Me.Production = New System.Windows.Forms.ComboBox()
         Me.MagasinEnlevement = New System.Windows.Forms.ComboBox()
         Me.EnregistrerCommande = New System.Windows.Forms.Button()
@@ -152,10 +150,10 @@ Partial Class FormCommandes
         Me.Label42 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ProductionTableAdapter = New SUPSEMENCE.semencesDataSetTableAdapters.productionTableAdapter()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ModifierMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SupprimerMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProductionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.EnregistrementCommande.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -163,8 +161,6 @@ Partial Class FormCommandes
         CType(Me.NiveauinstitutionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SemencesDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Montant, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Quantite, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,6 +187,7 @@ Partial Class FormCommandes
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -563,16 +560,6 @@ Partial Class FormCommandes
         Me.Speculation.Name = "Speculation"
         Me.Speculation.Size = New System.Drawing.Size(253, 24)
         Me.Speculation.TabIndex = 24
-        '
-        'ProductionBindingSource
-        '
-        Me.ProductionBindingSource.DataMember = "production"
-        Me.ProductionBindingSource.DataSource = Me.SemencesDataSet
-        '
-        'SemencesDataSet
-        '
-        Me.SemencesDataSet.DataSetName = "semencesDataSet"
-        Me.SemencesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Production
         '
@@ -1623,10 +1610,6 @@ Partial Class FormCommandes
         Me.DataGridView1.Size = New System.Drawing.Size(1175, 607)
         Me.DataGridView1.TabIndex = 77
         '
-        'ProductionTableAdapter
-        '
-        Me.ProductionTableAdapter.ClearBeforeFill = True
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ModifierMenuItem, Me.SupprimerMenuItem})
@@ -1664,8 +1647,6 @@ Partial Class FormCommandes
         Me.Panel3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SemencesDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Montant, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Quantite, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1698,6 +1679,7 @@ Partial Class FormCommandes
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1732,7 +1714,6 @@ Partial Class FormCommandes
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Speculation As ComboBox
-    Friend WithEvents ProductionBindingSource As BindingSource
     Friend WithEvents SemencesDataSet As semencesDataSet
     Friend WithEvents Production As ComboBox
     Friend WithEvents MagasinEnlevement As ComboBox
@@ -1743,7 +1724,6 @@ Partial Class FormCommandes
     Friend WithEvents Montant As NumericUpDown
     Friend WithEvents Quantite As NumericUpDown
     Friend WithEvents TraitementCommande As TabPage
-    Friend WithEvents ProductionTableAdapter As semencesDataSetTableAdapters.productionTableAdapter
     Friend WithEvents GestionEnlèvements As TabPage
     Friend WithEvents DetailVariete As Panel
     Friend WithEvents ButtonValiderCommande As Button
@@ -1818,4 +1798,5 @@ Partial Class FormCommandes
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents Label42 As Label
     Friend WithEvents PictureBox5 As PictureBox
+    Friend WithEvents ProductionBindingSource As BindingSource
 End Class

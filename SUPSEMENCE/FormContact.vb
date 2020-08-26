@@ -1,9 +1,12 @@
-﻿Public Class FormContact
+﻿Imports MySql.Data.MySqlClient
+
+Public Class FormContact
+
+    Private connection As MySqlConnection = DBConnection.connection
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.client'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-        Me.ClientTableAdapter.FillBy(Me.SemencesDataSet.client)
-        'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.localisation'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-        Me.LocalisationTableAdapter.Fill(Me.SemencesDataSet.localisation)
+
+
+        FillChoixLocalite()
 
     End Sub
 
@@ -28,12 +31,32 @@
         End If
     End Sub
 
-    Private Sub FillByToolStripButton_Click_1(sender As Object, e As EventArgs)
-        Try
-            Me.ClientTableAdapter.FillBy(Me.SemencesDataSet.client)
-        Catch ex As System.Exception
-            System.Windows.Forms.MessageBox.Show(ex.Message)
-        End Try
+    Private Sub FillChoixLocalite()
+        Dim query = "Select zone_institution.id_localisation, village  from zone_institution
+                     inner join localisation on localisation.id_localisation=zone_institution.id_localisation
+                     inner join zone_agro_ecologique on zone_agro_ecologique.id_zone=localisation.id_zone
+                     where zone_institution.id_institution=@id_institution"
 
+        FillChoix(query:=query,
+                  BindingSourceControl:=LocalisationBindingSource,
+                  ChoixControl:=Localisation,
+                  valueCol:="id_localisation",
+                  displayCol:="village")
+    End Sub
+
+    Private Sub FillChoix(query, BindingSourceControl, ChoixControl, valueCol, displayCol)
+
+        Dim command = New MySqlCommand(query, connection)
+        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+
+
+        Dim adapter = New MySqlDataAdapter(command)
+        Dim dataTable = New DataTable()
+        adapter.Fill(dataTable)
+
+        BindingSourceControl.DataSource = dataTable
+
+        ChoixControl.ValueMember = dataTable.Columns(valueCol).ToString()
+        ChoixControl.DisplayMember = dataTable.Columns(displayCol).ToString()
     End Sub
 End Class

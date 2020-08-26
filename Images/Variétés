@@ -1,0 +1,352 @@
+Variétés
+----------RIZ----------
+IRAT 10
+Dj 8-341
+ITA 150
+WAB 56-50
+Nerica 1
+Nerica 5
+Nerica 6 
+Dj 684 D
+Dj 11-509
+Dj 12-519
+BW 248-1
+BR 51-46-5
+ITA 123
+Tox 728-1
+BG 90-2 
+Rok 5
+WAR 1
+WAR 77-3-2-2
+WAR 81-2-1-3-2
+Ikong Pao
+IR 8
+Jaya
+IR 1529-680-3
+IR 442
+KH 998
+Kwang She Shun
+Sahel 108
+Sahel 134
+Sahel 159
+Sahel 177
+Sahel 201
+Sahel 202 
+Sahel 208
+Sahel 209
+Sahel 210
+Sahel 217
+Sahel 222
+Sahel 305
+Sahel 317
+Sahel 328
+Sahel 329
+Nerica-S-19
+Nerica-S-21
+Nerica-S-36
+Nerica-S-44
+----------MIL----------
+Souna 3
+IBV 8001
+IBV 8004
+IBMV 8402
+ISMI 9507
+Gawane
+Thialack 2
+----------MAÏS----------
+Xéewel Gi
+Noor 96
+Doo Mer
+Sooror
+Gaaw Na
+Jaboot
+Goor Yomboul
+Yaayi Séex 
+----------ARACHIDE----------
+28-206
+756-A
+55-437
+57-313
+57-422
+69-101
+73-27
+73-28
+73-30
+73-33
+GC 8-35
+Fleur 11
+78-937
+55-33
+SRV 1-19
+73-9-11
+GH 119-20
+PC79-79
+H 75-0
+----------NIEBE----------
+58-57
+Ndiambour
+Mougne
+Bambey 21
+TN 88-63
+CB-5
+Diongoma
+Mélakh
+Mouride
+Yacine
+Pakau 
+58-74 f
+66-35 f
+----------OIGNON-----------
+Noflaye
+Gandiole
+Gao
+Solara
+Sirocco
+Julio
+Damani
+Belami
+Alizé 
+----------SORGHO----------
+CE 145-66
+CE 151-262
+CE 180-33
+CE 196-7-2-1
+F2-20
+Faourou
+Nguinte
+Nganda
+Darou 
+
+
+
+
+
+
+
+
+
+Riz	Sahel 108
+Riz	Sahel 210
+Riz	Sahel 177
+Riz	Sahel 134
+Riz	Sahel 201
+Riz	Sahel 329
+Riz	NERICA 4
+Riz	NERICA 8
+Riz	NERICA 6
+Riz	NERICA L19
+Riz	NERICA S44
+Riz	FKR 45 N
+Riz	NERICA 14
+Riz	DJ 11 509
+Riz	BG 90 2
+Riz	Tox 728
+Riz	War 77
+Riz	ROK 5
+Riz	ISRIZ 3 
+Riz	ISRIZ 8
+Riz	ISRIZ 9
+Riz	ISRIZ 12
+Riz	ISRIZ 15
+Sorgho	CE 145-66
+Sorgho	CE 151-262
+Sorgho	CE 180-33
+Sorgho	CE 196-7-2-1
+Sorgho	F2-20
+Sorgho	Faourou
+Sorgho	Nguinte
+Sorgho	Nganda
+Sorgho	Darou
+Mil	Souna 3
+Mil	IBV 8001
+Mil	IBV 8004
+Mil	IBMV 8402
+Mil	IDSMD 9507
+Mil	Gawane
+Mil	Thialack 2
+Maiis	Xeewel Gi
+Maiis	Noor 96
+Maiis	Doo Mer
+Maiis	Sooror
+Maiis	Gaaw Na
+Maiis	Jaboot
+Maiis	Goor Yomboul
+Maiis	Yaayi Seex
+Maiis	Obatampa
+Maiis	Swan
+
+quantite,montant,est_enlevee,est_annulee,date_enlevement_souhaitee,date_enlevement_reelle,date_creation,date_derniere_modification,date_expression_besoin_client,magasin_enlevement,id_production,id_client,
+nom,prenom,telephone,email,id_localisation,id_client,
+
+FormContact.Nom.Text is String.Empty Or
+FormContact.Prenom.Text is String.Empty Or
+FormContact.Telephone.Text is String.Empty Or
+FormContact.Mail.Text is String.Empty Or
+FormContact.Localisation.SelectedValue is String.Empty Or
+FormContact.Client.SelectedValue is String.Empty
+
+Nom.Text 
+Prenom.Text 
+Telephone.Text 
+Mail.Text 
+Localisation.SelectedValue 
+Client.SelectedValue 
+
+
+Variété avant date 
+Supp info zone
+
+
+
+
+
+
+NEXT SPRINT
+SPRINT COMMANDE
+	add étapes commandes enregistrés - traités - enlevèes
+		supp 
+			date_enl_reele
+			date_last_update
+			id_prod
+			magasin_enl
+			id_institution
+
+		add onglet traitement des commandes 
+			voir dispo sotck
+			valider/marquer non dispo en fctn de la dispo
+
+			recoupements 
+				par client
+				par période
+
+		add onlget enlèvement
+			voir command traitées
+			marquer livré/non livré
+	
+SPRINT PRODUCTION
+	add onlget etat des stocks : production une/plusieurs/toutes les variétés (stock total)
+	add unités
+	creer table pour chaque région, commune
+	creer table stock pour pouvoir répondre aux questions combien il me reste de Sahel 108
+	voir les quantité
+
+
+SPRINT STATISTIQUE/RAPPORTAGE
+Statistiques
+		filtrer par couleur par type de culture
+		Dans quelle région/commune on cultive le riz
+		Quelle est la zone X sur la carte du sénégal
+		variété la plus demandée
+		variété la plus vendue
+
+
+SPRINT CENTRE
+	param centre
+	choisir logo
+	nom complet structure
+	sigle
+	adresse
+	adresse email
+	magasin (déja fait)
+
+SPRINT FINAL
+	possibilité de saisir l'inventaire REEEL/PHYSIQUE dans l'appli aprés vérification par les comptables des matières
+
+
+quantite 
+montant 
+est_enlevee 
+est_annulee 
+date_enlevement_souhaitee 
+date_enlevement_reelle 
+date_creation 
+date_derniere_modification 
+date_expression_besoin_client 
+magasin_enlevement 
+id_production 
+id_client
+
+
+quantite  
+montant 
+date_enlevement_souhaitee 
+date_creation 
+date_expression_besoin_client 
+
+magasin_elevement
+	nom_magasin 
+
+id_production 
+	id_niveau
+		nom_niveau 
+	id_variete_institution
+		id_variete
+			nom_variete
+			id_speculation
+				nom_speculation 
+
+id_client
+	nom_complet_structure 
+
+quantite,  montant, date_enlevement_souhaitee, date_creation, date_expression_besoin_client,nom_magasin,nom_niveau,nom_variete,nom_speculation,nom_complet_structure,
+
+
+
+
+
+        Quantite.Value
+        Montant.Value
+        False
+        False
+        DateEnlevement.Value
+        DateEnlevement.Value
+        Date.Now()
+        Date.Now()
+        DateExpressionBesoin.Value
+        MagasinEnlevement.SelectedValue
+        Production.SelectedValue
+        Client.SelectedValue
+
+
+
+
+       "variete.nom_variete",
+       "speculation.nom_speculation",
+       "niveau_de_production.nom_niveau",
+       "commande.quantite", 
+       "commande.montant", 
+       "client.nom_complet_structure",
+       "commande.date_expression_besoin_client", 
+       "commande.date_enlevement_souhaitee",
+       "magasin.nom_magasi"n
+
+
+
+
+
+
+
+
+
+
+
+
+
+       commande 
+       	add modif commandes 
+       	CRUD w/ button on tab
+       	Pop up
+       	add legende 
+       		vert sans faute
+       		jaune impossible
+       		orange stock dispo mais qté sécu un peu dépassé
+       	add button on tab with legend
+       	replace croix rouge by another self
+       	replace valider/rejeter by accepte/non accepté/non traité 
+       	défalquer au moment du traitement de la commande
+
+       Production 
+       	add onglet variété
+       	click from spéculation to variété
+       	liste variété tableau
+       	gérer le scénario: diar neu mais pas encore enlevé

@@ -16,14 +16,15 @@ Public Class FormParametres
         LoadSpeculation()
         LoadVariete()
         LoadZone()
-        FillChoixRegion()
-        FillChoixCommune()
-        FillChoixLocalite()
+        FillChoixRegion(RegionBindingSource, RegionZone, RegionZone, CommuneZone, Zone)
+        FillChoixCommune(CommuneBindingSource, CommuneZone, RegionZone, CommuneZone, Zone)
+        FillChoixLocalite(LocaliteBindingSource, LocaliteZone, RegionZone, CommuneZone, Zone)
         FillChoixLocaliteMagasin()
         LoadMagasin()
-        FillChoixLocaliteInstitution()
         FillNiveaux()
         FillChoixVariete()
+        FillContact()
+        FIllInstitutionForm()
 
         DataVarieteInstitution.Columns("id_variete").Visible = False
 
@@ -308,7 +309,7 @@ Public Class FormParametres
     End Sub
 
     Private Sub LoadZone()
-        Dim queryGetInstitutionVariete = "select nom_zone, region, departement, commune, village, longitude, latitude from zone_institution
+        Dim queryGetInstitutionVariete = "select nom_zone, region, departement, commune, village from zone_institution
                                             inner join localisation on localisation.id_localisation=zone_institution.id_localisation
                                             inner join zone_agro_ecologique on zone_agro_ecologique.id_zone=localisation.id_zone
                                             where zone_institution.id_institution=@id_institution"
@@ -325,54 +326,75 @@ Public Class FormParametres
     End Sub
 
     Private Sub Zone_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Zone.SelectedIndexChanged
-        FillChoixRegion()
-        FillChoixCommune()
-        FillChoixLocalite()
+        FillChoixRegion(RegionBindingSource, RegionZone, RegionZone, CommuneZone, Zone)
+        FillChoixCommune(CommuneBindingSource, CommuneZone, RegionZone, CommuneZone, Zone)
+        FillChoixLocalite(LocaliteBindingSource, LocaliteZone, RegionZone, CommuneZone, Zone)
     End Sub
 
-    Private Sub FillChoixRegion()
-        Dim query = "select distinct region from localisation where id_zone=@id_zone"
+    Private Sub FillChoixRegion(BindingSource As BindingSource, NextControl As ComboBox, RegionControl As ComboBox, CommuneControl As ComboBox, Optional ZoneControl As ComboBox = Nothing)
+        Dim query = "select distinct region from localisation"
+        If NextControl.Name.Contains("Zone") Then
+            query = "select distinct region from localisation where id_zone=@id_zone"
+        End If
         FillChoix(query:=query,
-                   BindingSourceControl:=RegionBindingSource,
-                   NextChoixControl:=RegionZone,
+                   BindingSourceControl:=BindingSource,
+                   NextChoixControl:=NextControl,
                    valueCol:="region",
-                   displayCol:="region")
+                   displayCol:="region",
+                 ZoneControl:=ZoneControl,
+                  RegionControl:=RegionControl,
+                  CommuneControl:=CommuneControl)
     End Sub
 
     Private Sub Region_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RegionZone.SelectedIndexChanged
-        FillChoixCommune()
+        FillChoixCommune(CommuneBindingSource, CommuneZone, RegionZone, CommuneZone, Zone)
     End Sub
 
-    Private Sub FillChoixCommune()
-        Dim query = $"select distinct commune from localisation where id_zone=@id_zone and region=@region"
+    Private Sub FillChoixCommune(BindingSource As BindingSource, NextControl As ComboBox, RegionControl As ComboBox, CommuneControl As ComboBox, Optional ZoneControl As ComboBox = Nothing)
+        Dim query = $"select distinct commune from localisation where region=@region"
+        If NextControl.Name.Contains("Zone") Then
+            query = $"select distinct commune from localisation where id_zone=@id_zone and region=@region"
+        End If
         FillChoix(query:=query,
-                  BindingSourceControl:=CommuneBindingSource,
-                  NextChoixControl:=CommuneZone,
+                  BindingSourceControl:=BindingSource,
+                  NextChoixControl:=NextControl,
                   valueCol:="commune",
-                  displayCol:="commune")
+                  displayCol:="commune",
+                 ZoneControl:=ZoneControl,
+                  RegionControl:=RegionControl,
+                  CommuneControl:=CommuneControl)
     End Sub
 
     Private Sub CommuneZone_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CommuneZone.SelectedIndexChanged
-        FillChoixLocalite()
+        FillChoixLocalite(LocaliteBindingSource, LocaliteZone, RegionZone, CommuneZone, Zone)
     End Sub
 
-    Private Sub FillChoixLocalite()
-        Dim query = $"select village from localisation where (id_zone=@id_zone and region=@region and commune=@commune)"
+    Private Sub FillChoixLocalite(BindingSource As BindingSource, NextControl As ComboBox, RegionControl As ComboBox, CommuneControl As ComboBox, Optional ZoneControl As ComboBox = Nothing)
+        Dim query = $"select village from localisation where (region=@region and commune=@commune)"
+        If NextControl.Name.Contains("Zone") Then
+            query = $"select village from localisation where (id_zone=@id_zone and region=@region and commune=@commune)"
+        End If
         FillChoix(query:=query,
-                  BindingSourceControl:=LocaliteBindingSource,
-                  NextChoixControl:=LocaliteZone,
+                  BindingSourceControl:=BindingSource,
+                  NextChoixControl:=NextControl,
                   valueCol:="village",
-                  displayCol:="village")
+                  displayCol:="village",
+                  ZoneControl:=ZoneControl,
+                  RegionControl:=RegionControl,
+                  CommuneControl:=CommuneControl)
 
     End Sub
 
-    Private Sub FillChoix(query, BindingSourceControl, NextChoixControl, valueCol, displayCol)
+    Private Sub FillChoix(query, BindingSourceControl, NextChoixControl, valueCol, displayCol, RegionControl, CommuneControl, Optional ZoneControl = Nothing)
 
         Dim command = New MySqlCommand(query, connection)
 
-        command.Parameters.AddWithValue("@id_zone", Zone.SelectedValue)
-        command.Parameters.AddWithValue("@region", RegionZone.SelectedValue)
-        command.Parameters.AddWithValue("@commune", CommuneZone.SelectedValue)
+        If NextChoixControl.Name.Contains("Zone") And Zone IsNot Nothing Then
+            command.Parameters.AddWithValue("@id_zone", Zone.SelectedValue)
+        End If
+
+        command.Parameters.AddWithValue("@region", RegionControl.SelectedValue)
+        command.Parameters.AddWithValue("@commune", CommuneControl.SelectedValue)
 
         Dim adapter = New MySqlDataAdapter(command)
         Dim dataTable = New DataTable()
@@ -384,45 +406,48 @@ Public Class FormParametres
         NextChoixControl.DisplayMember = dataTable.Columns(displayCol).ToString()
     End Sub
 
-    Private Sub Panel6_Paint(sender As Object, e As PaintEventArgs) Handles Panel6.Paint
-
-    End Sub
 
     Private Sub AjouterContact_Click(sender As Object, e As EventArgs) Handles AjouterContact.Click
         AddNewContact()
     End Sub
 
-    Private Sub AddNewContact(Optional Prenom = "", Optional Nom = "", Optional Client = "")
-        If Prenom IsNot String.Empty Or Nom IsNot String.Empty Or Client IsNot String.Empty Then
-            FormContact.Prenom.Text = Prenom
-            FormContact.Nom.Text = Nom
-            FormContact.Client.SelectedValue = Client
+    Private Sub AddNewContact(Optional Prenom = "", Optional Nom = "", Optional Client = "", Optional Telephone = "")
+        Dim ContactForm = New FormContact()
+        If Prenom IsNot String.Empty Or Nom IsNot String.Empty Or Telephone IsNot String.Empty Then
+            ContactForm.Prenom.Text = Prenom
+            ContactForm.Nom.Text = Nom
+            ContactForm.Telephone.Text = Telephone
         End If
 
+        ContactForm.Label6.Visible = False
+        ContactForm.Client.Visible = False
 
-        Dim result = FormContact.ShowDialog()
+        Dim result = ContactForm.ShowDialog()
 
         If result = DialogResult.OK Then
-            'MessageBox.Show(FormContact.Nom.Text & Environment.NewLine & "
-            '" & FormContact.Prenom.Text & Environment.NewLine & "
-            '" & FormContact.Telephone.Text & Environment.NewLine & "
-            '" & FormContact.Mail.Text & Environment.NewLine & "
-            '" & FormContact.Localisation.SelectedValue & Environment.NewLine & "
-            '" & FormContact.Client.SelectedValue)
+            'MessageBox.Show(ContactForm.Nom.Text & Environment.NewLine & "
+            '" & ContactForm.Prenom.Text & Environment.NewLine & "
+            '" & ContactForm.Telephone.Text & Environment.NewLine & "
+            '" & ContactForm.Mail.Text & Environment.NewLine & "
+            '" & ContactForm.Localisation.SelectedValue & Environment.NewLine & "
+            '" & ContactForm.Client.SelectedValue)
 
-            Dim newContact = "insert into contact(nom,prenom,telephone,email,id_localisation,id_client)
-                            values(@nom,@prenom,@telephone,@email,@id_localisation,@id_client)"
+            Dim newContact = "insert into contact(nom,prenom,telephone,email,id_localisation, id_institution)
+                            values(@nom,@prenom,@telephone,@email,@id_localisation, @id_institution)"
 
             Dim command = New MySqlCommand(newContact, connection)
 
-            command.Parameters.AddWithValue("@nom", FormContact.Nom.Text)
-            command.Parameters.AddWithValue("@prenom", FormContact.Prenom.Text)
-            command.Parameters.AddWithValue("@telephone", FormContact.Telephone.Text)
-            command.Parameters.AddWithValue("@email", FormContact.Mail.Text)
-            command.Parameters.AddWithValue("@id_localisation", FormContact.Localisation.SelectedValue)
-            command.Parameters.AddWithValue("@id_client", FormContact.Client.SelectedValue)
+            command.Parameters.AddWithValue("@nom", ContactForm.Nom.Text)
+            command.Parameters.AddWithValue("@prenom", ContactForm.Prenom.Text)
+            command.Parameters.AddWithValue("@telephone", ContactForm.Telephone.Text)
+            command.Parameters.AddWithValue("@email", ContactForm.Mail.Text)
+            command.Parameters.AddWithValue("@id_localisation", ContactForm.Localisation.SelectedValue)
+            command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
 
             command.ExecuteNonQuery()
+
+            FillContact()
+
             MessageBox.Show("Ajouté avec succés!", "Nouveau contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
@@ -431,21 +456,14 @@ Public Class FormParametres
         Dim result = MessageBox.Show("Confirmer ?", "Nouvelle zone de culture", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Try
-                Dim query = "select id_localisation from localisation where (id_zone=@id_zone and region=@region and commune=@commune and village=@village)"
-
-                Dim command = New MySqlCommand(query, connection)
-
-                command.Parameters.AddWithValue("@id_zone", Zone.SelectedValue)
-                command.Parameters.AddWithValue("@region", RegionZone.SelectedValue)
-                command.Parameters.AddWithValue("@commune", CommuneZone.SelectedValue)
-                command.Parameters.AddWithValue("@village", LocaliteZone.SelectedValue)
+                Dim id_localisation = GetIdLocalisation(RegionZone, CommuneZone, LocaliteZone, Zone)
 
                 Dim insertZone = "insert into zone_institution(id_institution, id_localisation) values(@id_institution, @id_localisation)"
                 Dim insertCommand = New MySqlCommand(insertZone, connection)
 
 
                 insertCommand.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
-                insertCommand.Parameters.AddWithValue("@id_localisation", Integer.Parse(command.ExecuteScalar()))
+                insertCommand.Parameters.AddWithValue("@id_localisation", id_localisation)
 
                 insertCommand.ExecuteNonQuery()
 
@@ -456,6 +474,30 @@ Public Class FormParametres
         End If
     End Sub
 
+    Private Function GetIdLocalisation(Region, Commune, Localite, Optional Zone = Nothing, Optional fromInstitution = False) As Integer
+        Dim result As Integer
+        If fromInstitution = True Then
+            Dim query = "select id_localisation from institution where id_institution=@id_institution"
+            Dim command = New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+            result = Integer.Parse(command.ExecuteScalar())
+        Else
+            Dim query = "select id_localisation from localisation where (region=@region and commune=@commune and village=@village)"
+
+            Dim command = New MySqlCommand(query, connection)
+            If Zone IsNot Nothing Then
+                query = "select id_localisation from localisation where (id_zone=@id_zone and region=@region and commune=@commune and village=@village)"
+                command.Parameters.AddWithValue("@id_zone", Zone.SelectedValue)
+            End If
+            command.Parameters.AddWithValue("@region", Region.SelectedValue)
+            command.Parameters.AddWithValue("@commune", Commune.SelectedValue)
+            command.Parameters.AddWithValue("@village", Localite.SelectedValue)
+            result = Integer.Parse(command.ExecuteScalar())
+        End If
+
+        Return result
+
+    End Function
 
     Private Sub FillChoixLocaliteMagasin()
         Dim query = "Select zone_institution.id_localisation, village, region  from zone_institution
@@ -470,45 +512,6 @@ Public Class FormParametres
                   displayCol:="village")
     End Sub
 
-    Private Sub FillChoixRegionInstitution(query, BindingSourceControl, NextChoixControl, valueCol, displayCol)
-        Dim command = New MySqlCommand(query, connection)
-
-        command.Parameters.AddWithValue("@region", ComboBox1.SelectedValue)
-
-        Dim adapter = New MySqlDataAdapter(command)
-        Dim dataTable = New DataTable()
-        adapter.Fill(dataTable)
-
-        BindingSourceControl.DataSource = dataTable
-
-        NextChoixControl.ValueMember = dataTable.Columns(valueCol).ToString()
-        NextChoixControl.DisplayMember = dataTable.Columns(displayCol).ToString()
-    End Sub
-
-    Private Sub FillChoixLocaliteInstitution()
-        Dim query = "select village from localisation where region=@region"
-        FillChoixInstitution(query:=query,
-                  BindingSourceControl:=LocaliteInstitutionBindingSource,
-                  NextChoixControl:=ComboBox2,
-                  valueCol:="village",
-                  displayCol:="village")
-    End Sub
-
-    Private Sub FillChoixInstitution(query, BindingSourceControl, NextChoixControl, valueCol, displayCol)
-
-        Dim command = New MySqlCommand(query, connection)
-
-        command.Parameters.AddWithValue("@region", ComboBox1.SelectedValue)
-
-        Dim adapter = New MySqlDataAdapter(command)
-        Dim dataTable = New DataTable()
-        adapter.Fill(dataTable)
-
-        BindingSourceControl.DataSource = dataTable
-
-        NextChoixControl.ValueMember = dataTable.Columns(valueCol).ToString()
-        NextChoixControl.DisplayMember = dataTable.Columns(displayCol).ToString()
-    End Sub
     Private Sub FillLocalite(query, BindingSourceControl, ChoixControl, valueCol, displayCol)
 
         Dim command = New MySqlCommand(query, connection)
@@ -576,23 +579,32 @@ Public Class FormParametres
         DataMagasin.DataSource = dataTable
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub EnregistrerInstitution_Click(sender As Object, e As EventArgs) Handles EnregistrerInstitution.Click
 
-        If TextBox1.Text IsNot String.Empty Or TextBox2.Text IsNot String.Empty Or ComboBox1.Text IsNot String.Empty Then
+        If TextBox1.Text IsNot String.Empty Or
+            TextBox2.Text IsNot String.Empty Or
+            RegionInstitution.Text IsNot String.Empty Or
+            CommuneIntitution.Text IsNot String.Empty Or
+            LocaliteInstitution.Text IsNot String.Empty Then
+
+            Dim id_localisation = GetIdLocalisation(RegionInstitution, CommuneIntitution, LocaliteInstitution)
+
             Dim result = MessageBox.Show("Confirmer ?", "Ajouter/Modifier Institution", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
-                Dim query = "insert into institution(nom_complet, sigle, id_localisation) 
-                     values (@nom_complet, @sigle, @id_localisation)
-                     on duplicate key update nom_complet=@om_complet, sigle=@sigle, id_localisation=@id_localisation"
+                Dim query = "update institution 
+                             set nom_complet=@nom_complet, sigle=@sigle, id_localisation=@id_localisation
+                             where id_institution=@id_institution"
 
                 Dim command = New MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@nom_complet", DBConnection.id_institution)
-                command.Parameters.AddWithValue("@sigle", DBConnection.id_institution)
-                command.Parameters.AddWithValue("@id_localisation", DBConnection.id_institution)
-
+                command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+                command.Parameters.AddWithValue("@nom_complet", TextBox1.Text)
+                command.Parameters.AddWithValue("@sigle", TextBox2.Text)
+                command.Parameters.AddWithValue("@id_localisation", id_localisation)
 
                 command.ExecuteNonQuery()
             End If
+        Else
+            MessageBox.Show("Veuillez remplir tous les champs svp", "Formulaire invalide", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
 
     End Sub
@@ -627,4 +639,90 @@ Public Class FormParametres
         MessageBox.Show("Ajoutés avec succés.", "Niveaux de semence", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+    Private Sub FillContact()
+        Dim query = "select prenom, nom, telephone, email 
+                     from contact 
+                     where id_institution=@id_institution 
+                     "
+        Dim command = New MySqlCommand(query, connection)
+
+        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+
+        Dim adapter = New MySqlDataAdapter(command)
+        Dim dataTable = New DataTable()
+        adapter.Fill(dataTable)
+
+        DataContactInstitution.DataSource = dataTable
+    End Sub
+
+    Private Sub FIllInstitutionForm()
+        FillNomStructure()
+        FillChoixRegion(RegionInstitutionBindingSource, RegionInstitution, RegionInstitution, CommuneIntitution)
+
+        Dim id_localisation = GetIdLocalisation(RegionInstitution, CommuneIntitution, LocaliteInstitution, fromInstitution:=True)
+        Dim query = "select distinct region from localisation where id_localisation=@id_localisation"
+        Dim command = New MySqlCommand(query, connection)
+        command.Parameters.AddWithValue("@id_localisation", id_localisation)
+        Dim reader = command.ExecuteReader()
+        Dim region As String = ""
+        While reader.Read()
+            region = reader.GetString("region")
+        End While
+        reader.Close()
+        RegionInstitution.SelectedValue = region
+
+        FillChoixCommune(CommuneInstitutionBindingSource, CommuneIntitution, RegionInstitution, CommuneIntitution)
+        FillChoixLocalite(LocaliteInstitutionBindingSource, LocaliteInstitution, RegionInstitution, CommuneIntitution)
+    End Sub
+
+    Private Sub FillNomStructure()
+        Dim query = "select nom_complet, sigle, id_localisation 
+                     from institution 
+                     where id_institution=@id_institution
+                     "
+        Dim command = New MySqlCommand(query, connection)
+
+        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+
+        Dim reader = command.ExecuteReader()
+        While reader.Read()
+            TextBox1.Text = reader.GetString("nom_complet")
+
+            TextBox2.Text = reader.GetString("sigle")
+        End While
+        reader.Close()
+    End Sub
+
+    Private Sub RegionInstitution_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RegionInstitution.SelectedIndexChanged
+        FillChoixCommune(CommuneInstitutionBindingSource, CommuneIntitution, RegionInstitution, CommuneIntitution)
+        FillChoixLocalite(LocaliteInstitutionBindingSource, LocaliteInstitution, RegionInstitution, CommuneIntitution)
+    End Sub
+
+    Private Sub CommuneIntitution_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CommuneIntitution.SelectedIndexChanged
+        FillChoixLocalite(LocaliteInstitutionBindingSource, LocaliteInstitution, RegionInstitution, CommuneIntitution)
+    End Sub
+
+    'Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    'End Sub
+
+    'Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+    '    Dim split = TextBox1.Text.Split(" ")
+    '    Dim sigle = ""
+    '    For Each word In split
+    '        If word.ToLower().Equals("de") Or
+    '           word.ToLower().Equals("de") Or
+    '           word.ToLower().Equals("du") Or
+    '           word.ToLower().Equals("le") Or
+    '           word.ToLower().Equals("la") Or
+    '           word.ToLower().Equals("l'") Then
+    '            Continue For
+    '        Else
+    '            MessageBox.Show(word.Substring(0, 1))
+    '        End If
+
+    '        'sigle = $"{sigle}{word.Substring(0, 1).ToUpper()}"
+    '    Next
+    '    TextBox2.Text = sigle
+    'End Sub
 End Class

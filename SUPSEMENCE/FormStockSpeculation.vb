@@ -16,7 +16,7 @@ Public Class FormStockSpeculation
 
         Dim quantiteTotal = commandQuantiteTotal.ExecuteScalar()
         Dim labelQuantiteTotal = "STOCK TOTAL"
-        Dim imageQuantiteTotal = Image.FromFile($"{DBConnection.imagePath}{DBConnection.defaultImage}")
+        Dim imageQuantiteTotal = Image.FromFile($"{DBConnection.defaultImage}")
 
         AddCard(imageQuantiteTotal, labelQuantiteTotal, quantiteTotal)
 

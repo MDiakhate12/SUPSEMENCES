@@ -221,6 +221,7 @@ Partial Class FormContact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(386, 461)
         Me.Controls.Add(Me.Enregistrer)
         Me.Controls.Add(Me.Panel1)

@@ -1,10 +1,11 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.IO.Path
 
 Public Class DBConnection
     Public Shared connectionString As String = "server=localhost;user id=root;password=droite15;database=semences"
     Public Shared id_institution As Integer = 1
-    Public Shared imagePath = "C:\Users\DELL\Pictures\SUPSEMENCE\"
-    Public Shared defaultImage = "semences\default.jpg"
+    Public Shared imagePath = Combine("C:\Users\HP\source\repos\SUPSEMENCES", "Images\")
+    Public Shared defaultImage = Combine(imagePath, "semences", "default.jpg")
     Public Shared connection As MySqlConnection = New MySqlConnection(connectionString)
 
     Public Shared Async Function StartConnectionAsync() As Task

@@ -51,7 +51,7 @@ Public Class FormSpeculations
     End Sub
 
     Private Sub LoadChoixNiveau()
-        Dim getVarietes = "select n.nom_niveau, n.id_niveau 
+        Dim getVarietes = "select n.nom_niveau, ni.id_niveau_institution
                             from niveau_institution ni
                             inner join niveau_de_production n
                             on n.id_niveau=ni.id_niveau
@@ -63,9 +63,9 @@ Public Class FormSpeculations
         Dim dataAdapter = New MySqlDataAdapter(command)
         dataAdapter.FillAsync(dataTable)
         NiveauinstitutionBindingSource.DataSource = dataTable
+
         NiveauDeProduction.DisplayMember = dataTable.Columns("nom_niveau").ToString()
-        NiveauDeProduction.ValueMember = dataTable.Columns("id_niveau").ToString()
-        NiveauDeProduction.SelectedValue = dataTable.Rows(1).Item("id_niveau").ToString()
+        NiveauDeProduction.ValueMember = dataTable.Columns("id_niveau_institution").ToString()
     End Sub
 
 
@@ -224,11 +224,8 @@ Public Class FormSpeculations
             Return
         End If
 
-
-
-
-        Dim newProduction = "insert into production(date_de_production, quantite_produite, prix_unitaire, id_variete_institution, id_localisation, id_magasin, id_niveau) 
-                                values(@date_de_production, @quantite_produite, @prix_unitaire, @id_variete_institution, @id_localisation, @id_magasin, @id_niveau); 
+        Dim newProduction = "insert into production(date_de_production, quantite_produite, prix_unitaire, id_variete_institution, id_localisation, id_magasin, id_niveau_institution) 
+                                values(@date_de_production, @quantite_produite, @prix_unitaire, @id_variete_institution, @id_localisation, @id_magasin, @id_niveau_institution); 
                                 select last_insert_id();"
 
         Dim command = New MySqlCommand(newProduction, connection)
@@ -239,7 +236,7 @@ Public Class FormSpeculations
         command.Parameters.AddWithValue("@date_de_production", DateProduction.Value)
         command.Parameters.AddWithValue("@id_localisation", Localisation.SelectedValue)
         command.Parameters.AddWithValue("@id_magasin", Magasin.SelectedValue)
-        command.Parameters.AddWithValue("@id_niveau", NiveauDeProduction.SelectedValue)
+        command.Parameters.AddWithValue("@id_niveau_institution", NiveauDeProduction.SelectedValue)
 
         Dim id = command.ExecuteScalar()
         UpdateQuantite(id)
@@ -266,19 +263,19 @@ Public Class FormSpeculations
     End Sub
 
 
-    Private Sub Recherche_GotFocus(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Recherche.GotFocus
+    Private Sub Recherche_GotFocus(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If Recherche.Text = "Rechercher" Then
             Recherche.Text = ""
         End If
     End Sub
 
-    Private Sub Recherche_LostFocus(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Recherche.LostFocus
+    Private Sub Recherche_LostFocus(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If Recherche.Text = "" Then
             Recherche.Text = "Rechercher"
         End If
     End Sub
 
-    Private Sub Recherche_TextChanged(sender As Object, e As EventArgs) Handles Recherche.TextChanged
+    Private Sub Recherche_TextChanged(sender As Object, e As EventArgs)
         If Recherche.Text = "Rechercher" Then
             Return
         Else
@@ -334,7 +331,7 @@ Public Class FormSpeculations
         End If
     End Sub
 
-    Private Sub ClearRechercher_Click(sender As Object, e As EventArgs) Handles ClearRechercher.Click
+    Private Sub ClearRechercher_Click(sender As Object, e As EventArgs)
         If Not Recherche.Text.Equals("") Then
             Recherche.Clear()
         End If

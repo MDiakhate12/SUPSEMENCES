@@ -165,12 +165,4 @@ Public Class FormUpdateProduction
         End If
     End Sub
 
-    Private Sub FillByToolStripButton_Click_1(sender As Object, e As EventArgs)
-        Try
-            Me.ClientTableAdapter.FillBy(Me.SemencesDataSet.client)
-        Catch ex As System.Exception
-            System.Windows.Forms.MessageBox.Show(ex.Message)
-        End Try
-
-    End Sub
 End Class
