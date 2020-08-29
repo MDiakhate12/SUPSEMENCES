@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: semences
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `semences`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `semences` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `semences`;
 
 --
 -- Table structure for table `client`
@@ -82,7 +74,7 @@ CREATE TABLE `commande` (
   CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_production`) REFERENCES `production` (`id_production`),
   CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`magasin_enlevement`) REFERENCES `magasin` (`id_magasin`),
   CONSTRAINT `commande_ibfk_3` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +83,7 @@ CREATE TABLE `commande` (
 
 LOCK TABLES `commande` WRITE;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
-INSERT INTO `commande` VALUES (37,1000,200000,1,1,0,1,0,'2020-07-08','2020-08-13','2020-07-07',NULL,'2020-07-07',3,40,18),(39,600,180000,0,1,0,1,0,'2020-07-08','2020-07-08','2020-07-07',NULL,'2020-07-07',1,41,20),(40,700,210000,0,1,0,1,1,'2020-07-16','2020-07-08','2020-07-08','2020-07-08','2020-07-08',3,40,20),(42,1000,100000,1,1,0,1,0,'2020-07-16','2020-07-08','2020-07-08',NULL,'2020-07-08',3,41,20),(43,600,60000,0,1,0,1,0,'2020-08-30','2020-08-30','2020-08-13',NULL,'2020-08-13',3,41,20),(44,100,10000,1,1,0,1,0,'2020-08-23','2020-08-13','2020-08-13',NULL,'2020-08-13',3,41,20),(45,700,140000,1,1,0,1,0,'2020-08-30','2020-08-13','2020-08-13',NULL,'2020-08-13',1,55,20),(46,800,240000,1,1,0,1,0,'2020-08-30','2020-08-13','2020-08-13',NULL,'2020-08-13',2,51,20),(47,700,210000,1,1,0,1,0,'2020-08-30','2020-08-13','2020-08-13',NULL,'2020-08-13',1,54,20),(48,1100,220000,1,1,0,1,0,'2020-08-29','2020-08-13','2020-08-13',NULL,'2020-08-13',1,55,20),(49,600,180000,0,0,0,0,0,'2020-08-30','2020-08-30','2020-08-13',NULL,'2020-08-13',1,54,20),(50,700,140000,0,0,0,0,0,'2020-08-16','2020-08-16','2020-08-13',NULL,'2020-08-13',1,55,20),(51,1000,100000,1,1,0,1,0,'2020-08-16','2020-08-15','2020-08-15',NULL,'2020-08-15',3,56,20),(52,1300,130000,0,0,0,0,0,'2020-08-30','2020-08-30','2020-08-15',NULL,'2020-08-15',3,56,20);
+INSERT INTO `commande` VALUES (57,2600,260000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27',NULL,'2020-07-01',1,66,18),(58,900,135000,1,1,0,1,0,'2020-10-18','2020-08-27','2020-08-27',NULL,'2020-06-17',3,67,16),(59,2500,312500,0,1,0,1,0,'2020-10-25','2020-10-25','2020-08-27',NULL,'2020-06-18',1,69,17),(60,1600,240000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27','2020-08-28','2020-06-28',3,67,3);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +103,7 @@ CREATE TABLE `contact` (
   `id_localisation` int NOT NULL,
   `id_institution` int DEFAULT NULL,
   `id_magasin` int DEFAULT NULL,
-  `id_client` int NOT NULL,
+  `id_client` int DEFAULT NULL,
   PRIMARY KEY (`id_contact`),
   KEY `id_localisation` (`id_localisation`),
   KEY `id_client` (`id_client`),
@@ -121,7 +113,7 @@ CREATE TABLE `contact` (
   CONSTRAINT `contact_ibfk_2` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`),
   CONSTRAINT `contact_ibfk_3` FOREIGN KEY (`id_magasin`) REFERENCES `magasin` (`id_magasin`),
   CONSTRAINT `contact_ibfk_4` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +122,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'Modou','Thiep','23456789','modou@thiep.com',1,NULL,NULL,18),(2,'a','b','c','d',24,NULL,NULL,20);
+INSERT INTO `contact` VALUES (1,'Modou','Thiep','23456789','modou@thiep.com',1,NULL,NULL,18),(2,'a','b','c','d',24,NULL,NULL,20),(3,'Fall','Fatou','771234567','fatou@fall.com',1,NULL,NULL,3),(4,'Diallo','Mamadou','77123456','diallou@mamadou.com',1,NULL,NULL,20),(5,'Seck','Pathé','778951245','pathe@seck.com',1,1,NULL,NULL),(6,'Ndiaye','Modou','778946210','modou@ndiaye.com',2,1,NULL,NULL),(7,'adedae','aedaeda','88841661','adeda',2,1,NULL,NULL);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +141,7 @@ CREATE TABLE `institution` (
   PRIMARY KEY (`id_institution`),
   KEY `id_localisation` (`id_localisation`),
   CONSTRAINT `institution_ibfk_1` FOREIGN KEY (`id_localisation`) REFERENCES `localisation` (`id_localisation`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +150,7 @@ CREATE TABLE `institution` (
 
 LOCK TABLES `institution` WRITE;
 /*!40000 ALTER TABLE `institution` DISABLE KEYS */;
-INSERT INTO `institution` VALUES (1,'Institut Sénégalaise de Recherches Agricoles','ISRA',1),(2,'AfricaRICE','AR',6);
+INSERT INTO `institution` VALUES (1,'Institut Sénégalaise de Recherches Agricole','ISRA',185),(2,'AfricaRICE','AR',6);
 /*!40000 ALTER TABLE `institution` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +256,7 @@ CREATE TABLE `niveau_institution` (
   KEY `fk_niveau_idx` (`id_niveau`),
   CONSTRAINT `fk_institution` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`),
   CONSTRAINT `fk_niveau` FOREIGN KEY (`id_niveau`) REFERENCES `niveau_de_production` (`id_niveau`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +265,7 @@ CREATE TABLE `niveau_institution` (
 
 LOCK TABLES `niveau_institution` WRITE;
 /*!40000 ALTER TABLE `niveau_institution` DISABLE KEYS */;
-INSERT INTO `niveau_institution` VALUES (1,1,3),(2,1,4),(3,1,5),(4,1,6);
+INSERT INTO `niveau_institution` VALUES (5,1,1),(6,1,2),(1,1,3),(2,1,4),(3,1,5),(4,1,6);
 /*!40000 ALTER TABLE `niveau_institution` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,26 +283,23 @@ CREATE TABLE `production` (
   `prix_unitaire` int unsigned NOT NULL,
   `id_localisation` int NOT NULL,
   `id_magasin` int NOT NULL,
-  `id_niveau` int NOT NULL,
+  `id_niveau_institution` int NOT NULL,
   `id_variete_institution` int NOT NULL,
   `id_institution` int NOT NULL DEFAULT '1',
   `quantite_disponible` int DEFAULT NULL,
-  `id_niveau_institution` int NOT NULL DEFAULT '2',
   PRIMARY KEY (`id_production`),
   KEY `id_magasin` (`id_magasin`),
   KEY `id_localisation` (`id_localisation`),
-  KEY `id_niveau` (`id_niveau`),
   KEY `production_ibfk_4_idx` (`id_variete_institution`),
   KEY `id_variete_institution` (`id_variete_institution`),
   KEY `production_ibfk_5_idx` (`id_institution`),
-  KEY `production_ibfk_6_idx` (`id_niveau_institution`),
+  KEY `production_ibfk_3_idx` (`id_niveau_institution`),
   CONSTRAINT `production_ibfk_1` FOREIGN KEY (`id_magasin`) REFERENCES `magasin` (`id_magasin`),
   CONSTRAINT `production_ibfk_2` FOREIGN KEY (`id_localisation`) REFERENCES `localisation` (`id_localisation`),
-  CONSTRAINT `production_ibfk_3` FOREIGN KEY (`id_niveau`) REFERENCES `niveau_de_production` (`id_niveau`),
+  CONSTRAINT `production_ibfk_3` FOREIGN KEY (`id_niveau_institution`) REFERENCES `niveau_institution` (`id_niveau_institution`),
   CONSTRAINT `production_ibfk_4` FOREIGN KEY (`id_variete_institution`) REFERENCES `variete_institution` (`id_variete_institution`),
-  CONSTRAINT `production_ibfk_5` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`),
-  CONSTRAINT `production_ibfk_6` FOREIGN KEY (`id_niveau_institution`) REFERENCES `niveau_institution` (`id_niveau_institution`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `production_ibfk_5` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +308,7 @@ CREATE TABLE `production` (
 
 LOCK TABLES `production` WRITE;
 /*!40000 ALTER TABLE `production` DISABLE KEYS */;
-INSERT INTO `production` VALUES (40,'2020-07-07',4000,300,6,3,4,18,1,3100,2),(41,'2020-07-08',5000,100,6,3,4,20,1,2400,2),(43,'2020-07-08',3000,300,176,2,4,21,1,2700,2),(44,'2020-06-27',5000,200,2,1,5,19,1,4750,2),(45,'2020-06-27',4500,150,176,2,5,22,1,4000,2),(46,'2020-03-03',3000,200,176,2,4,24,1,2500,2),(47,'2020-03-28',2500,200,271,9,4,21,1,2200,2),(48,'2020-06-27',6000,500,271,9,4,25,1,5500,2),(49,'2020-06-27',8000,300,271,9,4,18,1,7800,2),(50,'2020-02-19',3000,200,176,2,4,18,1,2800,2),(51,'2020-07-09',3700,300,176,2,4,25,1,2400,2),(52,'2020-01-17',6800,200,176,2,4,25,1,6300,2),(53,'2020-03-20',5700,200,2,1,4,25,1,5200,2),(54,'2020-03-20',2900,300,2,1,4,23,1,1700,2),(55,'2020-03-20',6700,200,2,1,4,24,1,4400,2),(56,'2020-08-12',8300,100,6,3,4,19,1,7050,2);
+INSERT INTO `production` VALUES (66,'2020-08-27',3300,100,2,1,2,18,1,500),(67,'2020-08-11',9300,150,6,3,2,19,1,8150),(68,'2020-06-01',7200,125,176,2,2,22,1,6700),(69,'2020-07-23',3100,125,2,1,2,24,1,100),(70,'2020-07-23',7500,150,176,2,2,27,1,6500),(71,'2020-07-23',4900,75,271,9,2,27,1,3900),(72,'2020-05-28',4000,100,6,3,2,26,1,3000);
 /*!40000 ALTER TABLE `production` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -478,7 +467,7 @@ CREATE TABLE `zone_institution` (
   UNIQUE KEY `id_institution_2` (`id_institution`,`id_localisation`),
   KEY `id_localisation` (`id_localisation`),
   CONSTRAINT `zone_institution_ibfk_1` FOREIGN KEY (`id_localisation`) REFERENCES `localisation` (`id_localisation`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -487,7 +476,7 @@ CREATE TABLE `zone_institution` (
 
 LOCK TABLES `zone_institution` WRITE;
 /*!40000 ALTER TABLE `zone_institution` DISABLE KEYS */;
-INSERT INTO `zone_institution` VALUES (2,1,2),(3,1,6),(1,1,176),(5,1,271);
+INSERT INTO `zone_institution` VALUES (2,1,2),(3,1,6),(1,1,176),(5,1,271),(6,1,845);
 /*!40000 ALTER TABLE `zone_institution` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -500,4 +489,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-17 22:31:48
+-- Dump completed on 2020-08-29 16:03:51
