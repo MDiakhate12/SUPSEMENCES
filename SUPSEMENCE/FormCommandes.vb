@@ -3,9 +3,6 @@ Public Class FormCommandes
 
     Private connection As MySqlConnection = DBConnection.connection
     Private Sub FormCommandes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.niveau_institution'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-        'Me.ProductionTableAdapter.Fill(Me.SemencesDataSet.production)
-
         LoadCommandes()
         FillChoixClient()
         LoadCommandesATraiter()
@@ -26,6 +23,10 @@ Public Class FormCommandes
         TraitementCommandeData.Columns("stock_de_securite").Visible = False
         GestionEnlevementData.Columns("stock_de_securite").Visible = False
 
+        DateExpressionBesoin.MaxDate = DateTime.Now()
+        DateEnlevement.MinDate = DateTime.Now()
+
+        Niveau.SelectedIndex = Niveau.FindStringExact("Prébase")
     End Sub
 
     'Private Sub FormCommandes_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -82,11 +83,9 @@ Public Class FormCommandes
 
         Client.DisplayMember = dataTable.Columns("nom_complet_structure").ToString()
         Client.ValueMember = dataTable.Columns("id_client").ToString()
-
     End Sub
 
     Public Sub LoadChoixVariete()
-
         Dim getProductions = "Select id_production, v.nom_variete, s.nom_speculation, v.id_speculation, m.nom_magasin, m.id_magasin 
                                 From production p, magasin m, variete_institution vi, variete v, speculation s
                                 Where (
@@ -115,11 +114,9 @@ Public Class FormCommandes
 
         MagasinEnlevement.DisplayMember = dataTable.Columns("nom_magasin").ToString()
         MagasinEnlevement.ValueMember = dataTable.Columns("id_magasin").ToString()
-
     End Sub
 
     Private Sub LoadCommandes()
-
         Dim getCommande = "select
                             numero_de_commade,
 	                        variete.nom_variete,
@@ -179,12 +176,9 @@ Public Class FormCommandes
         End While
 
         reader.Close()
-
-
     End Sub
 
     Private Sub LoadCommandesATraiter()
-
         Dim getCommande = "select commande.id_production production, numero_de_commade, nom_variete, quantite quantite_commandee, stock_de_securite, quantite_disponible
                             from commande
                             inner join production on production.id_production=commande.id_production 
@@ -208,11 +202,9 @@ Public Class FormCommandes
         'Dim firstRow = TraitementCommandeData.Rows.GetFirstRow(DataGridViewElementStates.Visible)
         'TraitementCommandeData.Rows(firstRow).Selected = True
         TraitementCommandeData.ClearSelection()
-
     End Sub
 
     Private Sub LoadCommandesAEnlever()
-
         Dim getCommande = "select commande.id_production production, numero_de_commade, nom_variete, date_enlevement_souhaitee, quantite quantite_commandee, stock_de_securite, quantite_disponible
                             From commande
                             inner Join production on production.id_production=commande.id_production 
@@ -239,6 +231,7 @@ Public Class FormCommandes
         'TraitementCommandeData.Rows(firstRow).Selected = True
         GestionEnlevementData.ClearSelection()
     End Sub
+
     Private Sub FillValidite(data As DataGridView, table As DataTable)
         Dim dataColumn = New DataColumn("Validité", GetType(Image))
         table.Columns.Add(dataColumn)
@@ -434,7 +427,6 @@ Public Class FormCommandes
             AddNewContact()
         End If
         FillChoixClient()
-
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click

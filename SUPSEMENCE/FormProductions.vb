@@ -19,6 +19,7 @@ Public Class FormSpeculations
         newPage.Visible = True
         newPage.Show()
 
+        LoadChoixSpeculation()
         LoadChoixVariete()
         LoadChoixNiveau()
         LoadProduction()
@@ -27,10 +28,31 @@ Public Class FormSpeculations
         FillMagasin()
         ShowZoneUnderLocalite()
 
+        DateProduction.MaxDate = DateTime.Now()
 
         'NavigateTo(FormStockSpeculation, ButtonStockSpeculation)
 
         DataProduction.Columns("id_production").Visible = False
+
+        NiveauDeProduction.SelectedIndex = NiveauDeProduction.FindStringExact("Prébase")
+    End Sub
+
+    Private Sub LoadChoixSpeculation()
+        Dim getVarietes = "select nom_speculation, s.id_speculation
+                            from speculation_institution si 
+                            inner join speculation s 
+                            on s.id_speculation=si.id_speculation
+                            where id_institution=@id_institution"
+
+        Dim command = New MySqlCommand(getVarietes, connection)
+        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+        Dim dataTable = New DataTable()
+        Dim dataAdapter = New MySqlDataAdapter(command)
+        dataAdapter.Fill(dataTable)
+        SpeculationBindingSource.DataSource = dataTable
+
+        ChoixSpéculation.DisplayMember = dataTable.Columns("nom_speculation").ToString()
+        ChoixSpéculation.ValueMember = dataTable.Columns("id_speculation").ToString()
     End Sub
 
     Private Sub LoadChoixVariete()
@@ -38,10 +60,11 @@ Public Class FormSpeculations
                             from variete_institution 
                             inner join variete 
                             on variete.id_variete=variete_institution.id_variete 
-                            where id_institution=@id_institution"
+                            where id_institution=@id_institution and id_speculation=@id_speculation"
 
         Dim command = New MySqlCommand(getVarietes, connection)
         command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+        command.Parameters.AddWithValue("@id_speculation", ChoixSpéculation.SelectedValue)
         Dim dataTable = New DataTable()
         Dim dataAdapter = New MySqlDataAdapter(command)
         dataAdapter.FillAsync(dataTable)
@@ -351,7 +374,7 @@ Public Class FormSpeculations
     End Sub
 
     Private Sub MenuItemModifier_Click(sender As Object, e As EventArgs) Handles MenuItemModifier.Click
-        Dim getProduction = "select p.id_production, p.date_de_production, p.quantite_produite, p.prix_unitaire, p.id_variete_institution, p.id_localisation, p.id_magasin, p.id_niveau
+        Dim getProduction = "select p.id_production, p.date_de_production, p.quantite_produite, p.prix_unitaire, p.id_variete_institution, p.id_localisation, p.id_magasin, p.id_niveau_institution
                              from production p
                              inner join magasin m on m.id_magasin=p.id_magasin
                              join niveau_institution ni on p.id_niveau_institution=ni.id_niveau_institution
@@ -388,7 +411,7 @@ Public Class FormSpeculations
             updateForm.DateProduction.Value = reader.GetString("date_de_production")
             id_localisation = reader.GetString("id_localisation")
             updateForm.Magasin.SelectedValue = reader.GetString("id_magasin")
-            updateForm.NiveauDeProduction.SelectedValue = reader.GetString("id_niveau")
+            updateForm.NiveauDeProduction.SelectedValue = reader.GetString("id_niveau_institution")
             id = reader.GetInt16("id_production")
         End While
         reader.Close()
@@ -470,5 +493,9 @@ Public Class FormSpeculations
 
     Private Sub Magasin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Magasin.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub ChoixSpéculation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ChoixSpéculation.SelectedIndexChanged
+        LoadChoixVariete()
     End Sub
 End Class
