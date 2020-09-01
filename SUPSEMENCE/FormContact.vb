@@ -4,6 +4,8 @@ Public Class FormContact
 
     Private connection As MySqlConnection = DBConnection.connection
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.client'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+        Me.ClientTableAdapter.Fill(Me.SemencesDataSet.client)
 
 
         FillChoixLocalite()

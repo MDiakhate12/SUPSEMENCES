@@ -4,40 +4,83 @@ Imports MySql.Data.MySqlClient
 
 Public Class FormRapports
     Private connection As MySqlConnection = DBConnection.connection
-    Private CurrentCommandeCheckedList As CheckedListBox = New CheckedListBox()
-    Private CurrentProductionCheckedList As CheckedListBox = New CheckedListBox()
-    Private CurrentClientCheckedList As CheckedListBox = New CheckedListBox()
-    Private CurrentLocaliteCheckedList As CheckedListBox = New CheckedListBox()
-    Private CurrentNiveauCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentVarieteProductionCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentLocaliteProductionCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentNiveauProductionCheckedList As CheckedListBox = New CheckedListBox()
+
+    Private CurrentVarieteCommandeCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentLocaliteCommandeCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentNiveauCommandeCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentClientCommandeCheckedList As CheckedListBox = New CheckedListBox()
+
     Private CurrentGenVarieteCheckedList As CheckedListBox = New CheckedListBox()
-    Private CurrentGenClientCheckedList As CheckedListBox = New CheckedListBox()
     Private CurrentGenLocaliteCheckedList As CheckedListBox = New CheckedListBox()
     Private CurrentGenNiveauCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrentGenClientCheckedList As CheckedListBox = New CheckedListBox()
+    Private CurrenGentNiveauCheckedList As CheckedListBox = New CheckedListBox()
+
+    'Private indexes As Dictionary(Of String, Integer) = New Dictionary(Of String, Integer)
+    'Private Indexes As List(Of KeyValuePair(Of String, Integer)) = New List(Of KeyValuePair(Of String, Integer
+    Private isVarieteCollapsed As Boolean = True
+    Private isLocaliteCollapsed As Boolean = True
+    Private isNiveauCollapsed As Boolean = True
+    Private isDateCollapsed As Boolean = True
+
+    Private isVarieteCollapsedCommande As Boolean = True
+    Private isLocaliteCollapsedCommande As Boolean = True
+    Private isNiveauCollapsedCommande As Boolean = True
+    Private isDateCollapsedCommande As Boolean = True
+    Private isClientCollapsedCommande As Boolean = True
+
+    Private isVarieteCollapsedGen As Boolean = True
+    Private isLocaliteCollapsedGen As Boolean = True
+    Private isNiveauCollapsedGen As Boolean = True
+    Private isDateCollapsedGen As Boolean = True
+    Private isClientCollapsedGen As Boolean = True
 
     Private Sub FormRapports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.commande'. Vous pouvez la déplacer ou la supprimer selon les besoins.
         'Me.CommandeTableAdapter.Fill(Me.SemencesDataSet.commande)
-        LoadSpeculationChart()
+        'LoadSpeculationChart()
         FillSpeculationInstitution()
 
         LoadVarieteChart()
         LoadVarieteProductionChart()
         LoadCommandeProductionChart()
 
-        FillVarieteCheckBoxList()
-        FillClientCheckBoxList(selector:=NomSpeculationCommande, checkedList:=ClientCommandeCheckedList, currentCheckedList:=CurrentClientCheckedList)
+        FillAllCheckedList(
+        selector:=NomSpeculationCommande,
+        variete:=VarieteCommandeCheckedList,
+        currentVariete:=CurrentVarieteCommandeCheckedList,
+        localite:=LocaliteCommandeCheckedList,
+        currentLocalite:=CurrentLocaliteCommandeCheckedList,
+        niveau:=NiveauCommandeCheckedList,
+        currentNiveau:=CurrentNiveauCommandeCheckedList,
+        client:=ClientCommandeCheckedList,
+        currentClient:=CurrentClientCommandeCheckedList
+        )
 
-        FillVarieteProductionCheckBoxList(selector:=NomSpeculationProduction, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentProductionCheckedList)
-        FillLocaliteProductionCheckedList(selector:=NomSpeculationProduction, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteCheckedList)
-        FillNiveauCheckedList(selector:=NomSpeculationProduction, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauCheckedList)
+        FillAllCheckedList(
+        selector:=NomSpeculationProduction,
+        variete:=VarieteProductionCheckedList,
+        currentVariete:=CurrentVarieteProductionCheckedList,
+        localite:=LocaliteCheckedList,
+        currentLocalite:=CurrentLocaliteProductionCheckedList,
+        niveau:=NiveauCheckedList,
+        currentNiveau:=CurrentNiveauProductionCheckedList
+        )
 
-        FillVarieteProductionCheckBoxList(selector:=NomSpeculationGen, checkedList:=GenVarieteCheckedList, currentCheckedList:=CurrentGenVarieteCheckedList)
-        FillLocaliteProductionCheckedList(selector:=NomSpeculationGen, checkedList:=GenLocaliteCheckedList, currentCheckedList:=CurrentGenLocaliteCheckedList)
-        FillNiveauCheckedList(selector:=NomSpeculationGen, checkedList:=GenNiveauCheckedList, currentCheckedList:=CurrentGenNiveauCheckedList)
-        FillClientCheckBoxList(selector:=NomSpeculationGen, checkedList:=GenClientCheckedList, currentCheckedList:=CurrentGenClientCheckedList)
-
-
-
+        FillAllCheckedList(
+        selector:=NomSpeculationGen,
+        variete:=GenVarieteCheckedList,
+        currentVariete:=CurrentGenVarieteCheckedList,
+        localite:=GenLocaliteCheckedList,
+        currentLocalite:=CurrentGenLocaliteCheckedList,
+        niveau:=GenNiveauCheckedList,
+        currentNiveau:=CurrenGentNiveauCheckedList,
+        client:=GenClientCheckedList,
+        currentClient:=CurrentGenClientCheckedList
+        )
 
         DateDebut.MaxDate = DateTime.Now()
         DateFin.MaxDate = DateTime.Now()
@@ -47,7 +90,24 @@ Public Class FormRapports
 
         DateDebutGen.MaxDate = DateTime.Now()
         DateFinGen.MaxDate = DateTime.Now()
+    End Sub
 
+    Private Sub FillAllCheckedList(selector, Optional variete = Nothing, Optional currentVariete = Nothing, Optional localite = Nothing, Optional currentLocalite = Nothing, Optional niveau = Nothing, Optional currentNiveau = Nothing, Optional client = Nothing, Optional currentClient = Nothing)
+        If variete IsNot Nothing Then
+            FillVarieteCheckedList(selector:=selector, checkedList:=variete, currentCheckedList:=currentVariete)
+        End If
+
+        If localite IsNot Nothing Then
+            FillLocaliteCheckedList(selector:=selector, checkedList:=localite, currentCheckedList:=currentLocalite)
+        End If
+
+        If niveau IsNot Nothing Then
+            FillNiveauCheckedList(selector:=selector, checkedList:=niveau, currentCheckedList:=currentNiveau)
+        End If
+
+        If client IsNot Nothing Then
+            FillClientCheckBoxList(selector:=selector, checkedList:=client, currentCheckedList:=currentClient)
+        End If
     End Sub
 
     Private Sub FillSpeculationInstitution()
@@ -79,11 +139,14 @@ Public Class FormRapports
     Private Sub FillClientCheckBoxList(checkedList, currentCheckedList, Optional selector = Nothing)
         Dim query = "select distinct nom_complet_structure 
                      from commande c 
-                     inner join client cl on cl.id_client = c.id_client 
+                     inner join client cl on cl.id_client=c.id_client
                      inner join production p on p.id_production=c.id_production
+                     inner join localisation l on l.id_localisation=p.id_localisation
+                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                      inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                      inner join variete v on v.id_variete=vi.id_variete
-                     where p.id_institution=@id_institution and id_speculation=@id_speculation"
+                     where (p.id_institution=@id_institution and id_speculation=@id_speculation)"
         'inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
         'inner join variete v on v.id_variete=vi.id_variete
         'and id_speculation=@id_speculation
@@ -99,30 +162,36 @@ Public Class FormRapports
             )
     End Sub
 
-    Private Sub FillVarieteCheckBoxList()
-        Dim query = "select distinct nom_variete 
-                     from commande c 
-                     inner join production p on p.id_production=c.id_production
-                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                     inner join variete v on v.id_variete=vi.id_variete
-                     where vi.id_institution=@id_institution and id_speculation=@id_speculation"
-
-        FillCheckedList(
-            query:=query,
-            selector:=NomSpeculationCommande,
-            checkedList:=VarieteCommandeCheckedList,
-            currentCheckedList:=CurrentCommandeCheckedList
-            )
-    End Sub
-
-
-
-    Private Sub FillVarieteProductionCheckBoxList(checkedList As CheckedListBox, currentCheckedList As CheckedListBox, Optional selector As ComboBox = Nothing)
-        Dim query = "select distinct nom_variete 
+    Private Sub FillVarieteCheckedList(checkedList As CheckedListBox, currentCheckedList As CheckedListBox, Optional selector As ComboBox = Nothing)
+        Dim query = "select distinct nom_variete
                      from production p
+                     inner join localisation l on l.id_localisation=p.id_localisation
+                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                      inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                      inner join variete v on v.id_variete=vi.id_variete
-                     where vi.id_institution=@id_institution and id_speculation=@id_speculation"
+                     where(vi.id_institution=@id_institution And id_speculation=@id_speculation)"
+
+        If checkedList.Name = VarieteCommandeCheckedList.Name Then
+            query = "select distinct nom_variete
+                     from commande c
+                     inner Join production p on p.id_production=c.id_production
+                     inner join localisation l on l.id_localisation=p.id_localisation
+                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                     inner join variete v on v.id_variete=vi.id_variete
+                     where(vi.id_institution=@id_institution And id_speculation=@id_speculation)"
+        End If
+
+
+        'If CheckedLessThanItems(CurrentLocaliteProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentLocaliteProductionCheckedList, "village")
+        'End If
+
+        'If CheckedLessThanItems(CurrentNiveauProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentNiveauProductionCheckedList, "nom_niveau")
+        'End If
 
         FillCheckedList(
             query:=query,
@@ -132,13 +201,34 @@ Public Class FormRapports
             )
     End Sub
 
-    Private Sub FillLocaliteProductionCheckedList(checkedList, currentCheckedList, Optional selector = Nothing)
+    Private Sub FillLocaliteCheckedList(checkedList, currentCheckedList, Optional selector = Nothing)
         Dim query = "select distinct village 
                      from production p
                      inner join localisation l on l.id_localisation=p.id_localisation
+                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                      inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                      inner join variete v on v.id_variete=vi.id_variete
-                     where vi.id_institution=@id_institution and id_speculation=@id_speculation"
+                     where (vi.id_institution=@id_institution and id_speculation=@id_speculation)"
+
+        If checkedList.Name = LocaliteCommandeCheckedList.Name Then
+            query = "select distinct village 
+                     from commande c
+                     inner join production p on p.id_production=c.id_production
+                     inner join localisation l on l.id_localisation=p.id_localisation
+                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                     inner join variete v on v.id_variete=vi.id_variete
+                     where (vi.id_institution=@id_institution and id_speculation=@id_speculation)"
+        End If
+        'If CheckedLessThanItems(CurrentVarieteProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentVarieteProductionCheckedList, "nom_variete")
+        'End If
+
+        'If CheckedLessThanItems(CurrentNiveauProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentNiveauProductionCheckedList, "nom_niveau")
+        'End If
 
         FillCheckedList(
             query:=query,
@@ -152,11 +242,21 @@ Public Class FormRapports
     Private Sub FillNiveauCheckedList(checkedList, currentCheckedList, Optional selector = Nothing)
         Dim query = "select distinct nom_niveau 
                      from production p 
+                     inner join localisation l on l.id_localisation=p.id_localisation
                      inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
                      inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                      inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                      inner join variete v on v.id_variete=vi.id_variete
-                     where p.id_institution=@id_institution and id_speculation=@id_speculation"
+                     where (p.id_institution=@id_institution and id_speculation=@id_speculation)"
+
+        'If CheckedLessThanItems(CurrentVarieteProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentVarieteProductionCheckedList, "nom_variete")
+        'End If
+
+        'If CheckedLessThanItems(CurrentLocaliteProductionCheckedList) Then
+        '    query = InsertFilter(query, CurrentLocaliteProductionCheckedList, "village")
+        'End If
+
 
         FillCheckedList(
             query:=query,
@@ -166,7 +266,8 @@ Public Class FormRapports
             columnName:="nom_niveau"
             )
     End Sub
-    Private Sub FillCheckedList(query As String, checkedList As CheckedListBox, currentCheckedList As CheckedListBox, Optional columnName As String = "nom_variete", Optional defaultState As Boolean = True, Optional selector As ComboBox = Nothing)
+    Private Sub FillCheckedList(query As String, checkedList As CheckedListBox, currentCheckedList As CheckedListBox, Optional columnName As String = "nom_variete", Optional defaultState As Boolean = False, Optional selector As ComboBox = Nothing, ByRef Optional filters As List(Of String) = Nothing, Optional filterSelectors As List(Of String) = Nothing)
+
         If connection.State = ConnectionState.Closed Then
             Return
         End If
@@ -188,279 +289,341 @@ Public Class FormRapports
             checkedList.Items.Add(reader.GetString(columnName), defaultState)
             currentCheckedList.Items.Add(reader.GetString(columnName), defaultState)
         End While
+
         reader.Close()
 
     End Sub
 
-    Private Function CheckedLessThanItems(CheckedList As CheckedListBox)
-        If CheckedList.Name.Contains("Client") Then
-            Return CheckedList.CheckedItems.Count >= 0 And CheckedList.CheckedItems.Count <= CheckedList.Items.Count
-        End If
-        Return CheckedList.CheckedItems.Count >= 1 And CheckedList.CheckedItems.Count <= CheckedList.Items.Count
+    Private Function CheckedLessThanItems(CheckedList As CheckedListBox, checkBox As CheckBox)
+        'If checkBox IsNot Nothing Then
+        Return CheckedList.CheckedItems.Count >= 1 And CheckedList.CheckedItems.Count <= CheckedList.Items.Count And checkBox.Checked = True
+        'End If
+        'Return CheckedList.CheckedItems.Count >= 1 And CheckedList.CheckedItems.Count <= CheckedList.Items.Count
     End Function
     Private Sub LoadVarieteChart()
-        Dim getVarieteCommandeeTable = $"select nom_variete, sum(quantite) quantite, nom_complet_structure client, est_enlevee livré
+        If VueGlobaleCommande.Checked = True Then
+            Dim getVarieteCommandeeTable = $"select nom_speculation, sum(quantite) quantite
                                     from commande c
                                     inner join production p on p.id_production=c.id_production
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                                    inner join client cl on cl.id_client = c.id_client 
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution) group by nom_speculation order by nom_speculation"
 
-        Dim getVarieteCommandee = $"select id_speculation, nom_variete, sum(quantite) quantite
+            Dim getVarieteCommandee = $"select nom_speculation, sum(quantite) quantite
                                     from commande c
                                     inner join production p on p.id_production=c.id_production
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                                    inner join client cl on cl.id_client = c.id_client 
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution) group by nom_speculation order by nom_speculation"
 
-        Dim getVarieteLivree = $"select id_speculation, nom_variete, sum(quantite) quantite 
+            Dim getVarieteLivree = $"select nom_speculation, sum(quantite)*est_enlevee quantite
                                 from commande c
                                 inner join production p on p.id_production=c.id_production
                                 inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                 inner join variete v on v.id_variete=vi.id_variete 
+                                inner join speculation s on s.id_speculation=v.id_speculation
+                                where (p.id_institution=@id_institution) group by nom_speculation order by nom_speculation"
+
+
+            FillChart(VarieteCommandeLivraisonChart, getVarieteCommandee, getVarieteLivree, "Quantité commandée en KG", "Quantité livrée en KG", "nom_speculation", "quantite", fromCommandeChart:=True)
+
+            FillTable(query:=getVarieteCommandeeTable, Table:=DataCommandeLivraison, selector:=NomSpeculationCommande)
+
+        ElseIf VueDetailleeCommande.Checked = True Then
+            Dim getVarieteCommandeeTable = $"select nom_variete, sum(quantite) quantite, nom_complet_structure client, village localite, nom_niveau, est_enlevee livré
+                                    from commande c
+                                    inner join production p on p.id_production=c.id_production
+                                    inner join localisation l on l.id_localisation=p.id_localisation
+                                    inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                                    inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
                                     inner join client cl on cl.id_client = c.id_client 
-                                where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation and c.est_enlevee=1) group by nom_variete"
+                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by numero_de_commade order by nom_variete"
 
-        If CheckedLessThanItems(CurrentCommandeCheckedList) Then
-
-            getVarieteCommandeeTable = $"select nom_variete, sum(quantite) quantite, nom_complet_structure client, est_enlevee livré
+            Dim getVarieteCommandee = $"select id_speculation, nom_variete, sum(quantite) quantite
                                     from commande c
                                     inner join production p on p.id_production=c.id_production
+                                    inner join localisation l on l.id_localisation=p.id_localisation
+                                    inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                                    inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                     inner join client cl on cl.id_client = c.id_client 
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-                                           nom_variete in ({GetCheckedValues(CurrentCommandeCheckedList)})
-                                           ) 
-                                           group by nom_variete"
+                                    inner join client cl on cl.id_client = c.id_client 
+                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete order by nom_variete"
 
-            getVarieteCommandee = $"select id_speculation, nom_variete, sum(quantite) quantite
-                                    from commande c
-                                    inner join production p on p.id_production=c.id_production
-                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                    inner join variete v on v.id_variete=vi.id_variete
-                     inner join client cl on cl.id_client = c.id_client 
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-                                           nom_variete in ({GetCheckedValues(CurrentCommandeCheckedList)})
-                                           ) 
-                                           group by nom_variete"
-
-            getVarieteLivree = $"select id_speculation, nom_variete, sum(quantite) quantite 
+            Dim getVarieteLivree = $"select id_speculation, nom_variete, sum(quantite)*est_enlevee quantite
                                 from commande c
-                                inner join production p on p.id_production=c.id_production
-                                inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                inner join variete v on v.id_variete=vi.id_variete 
-                     inner join client cl on cl.id_client = c.id_client 
-                                where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation and c.est_enlevee=1 and
-                                           nom_variete in ({GetCheckedValues(CurrentCommandeCheckedList)})
-                                           ) 
-                                           group by nom_variete"
+                                    inner join production p on p.id_production=c.id_production
+                                inner join localisation l on l.id_localisation=p.id_localisation
+                                    inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                                    inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
+                                    inner join client cl on cl.id_client = c.id_client  
+                                where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete order by nom_variete"
 
-            If FiltrerParDate.Checked Then
+
+            If FiltrerDateCommande.Checked Then
                 getVarieteCommandeeTable = InsertDateFilter(getVarieteCommandeeTable, "date_expression_besoin_client", DateDebut, DateFin)
                 getVarieteCommandee = InsertDateFilter(getVarieteCommandee, "date_expression_besoin_client", DateDebut, DateFin)
                 getVarieteLivree = InsertDateFilter(getVarieteLivree, "date_expression_besoin_client", DateDebut, DateFin)
             End If
 
             'MessageBox.Show(GetCheckedValues())
+
+            If CheckedLessThanItems(CurrentVarieteCommandeCheckedList, FiltrerVarieteCommande) Then
+                getVarieteCommandeeTable = InsertFilter(getVarieteCommandeeTable, CurrentVarieteCommandeCheckedList, "nom_variete")
+                getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentVarieteCommandeCheckedList, "nom_variete")
+                getVarieteLivree = InsertFilter(getVarieteLivree, CurrentVarieteCommandeCheckedList, "nom_variete")
+            End If
+
+            If CheckedLessThanItems(CurrentLocaliteCommandeCheckedList, FiltrerLocaliteCommande) Then
+                getVarieteCommandeeTable = InsertFilter(getVarieteCommandeeTable, CurrentLocaliteCommandeCheckedList, "village")
+                getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentLocaliteCommandeCheckedList, "village")
+                getVarieteLivree = InsertFilter(getVarieteLivree, CurrentLocaliteCommandeCheckedList, "village")
+            End If
+
+            If CheckedLessThanItems(CurrentNiveauCommandeCheckedList, FiltrerNiveauCommande) Then
+                getVarieteCommandeeTable = InsertFilter(getVarieteCommandeeTable, CurrentNiveauCommandeCheckedList, "nom_niveau")
+                getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentNiveauCommandeCheckedList, "nom_niveau")
+                getVarieteLivree = InsertFilter(getVarieteLivree, CurrentNiveauCommandeCheckedList, "nom_niveau")
+            End If
+
+            If CheckedLessThanItems(CurrentClientCommandeCheckedList, FiltrerClientCommande) Then
+                getVarieteCommandeeTable = InsertFilter(getVarieteCommandeeTable, CurrentClientCommandeCheckedList, "nom_complet_structure")
+                getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentClientCommandeCheckedList, "nom_complet_structure")
+                getVarieteLivree = InsertFilter(getVarieteLivree, CurrentClientCommandeCheckedList, "nom_complet_structure")
+            End If
+
+
+            FillChart(VarieteCommandeLivraisonChart, getVarieteCommandee, getVarieteLivree, "Quantité commandée en KG", "Quantité livrée en KG", "nom_variete", "quantite", fromCommandeChart:=True)
+
+            FillTable(query:=getVarieteCommandeeTable, Table:=DataCommandeLivraison, selector:=NomSpeculationCommande)
+
+            HideColumnIfChecked("localite", DataCommandeLivraison, FiltrerLocaliteCommande)
+            HideColumnIfChecked("nom_niveau", DataCommandeLivraison, FiltrerNiveauCommande)
+            HideColumnIfChecked("client", DataCommandeLivraison, FiltrerClientCommande)
+
         End If
-        If CheckedLessThanItems(CurrentClientCheckedList) Then
-            getVarieteCommandeeTable = InsertClientFilter(getVarieteCommandeeTable, CurrentClientCheckedList)
-            getVarieteCommandee = InsertClientFilter(getVarieteCommandee, CurrentClientCheckedList)
-            getVarieteLivree = InsertClientFilter(getVarieteLivree, CurrentClientCheckedList)
-        End If
-
-
-        FillChart(VarieteCommandeLivraisonChart, getVarieteCommandee, getVarieteLivree, "Quantité commandée en KG", "Quantité livrée en KG", "nom_variete", "quantite", fromCommandeChart:=True)
-
-        FillTable(query:=getVarieteCommandeeTable, Table:=DataCommandeLivraison, selector:=NomSpeculationCommande)
     End Sub
 
     Private Sub LoadVarieteProductionChart()
-        Dim getVarieteProduiteTable = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau
+        Dim otherTableColumns = ""
+        If VueParSpeculation.Checked = True Then
+            Dim getVarieteProduiteTable = $"select nom_speculation, sum(quantite_produite - stock_de_securite) quantite_produite
+                                    from production p
+                                    inner join localisation l on l.id_localisation=p.id_localisation
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution) group by nom_speculation order by nom_speculation"
+
+            Dim getVarieteProduite = $"select nom_speculation, sum(quantite_produite - stock_de_securite) quantite_produite
+                                    from production p
+                                    inner join localisation l on l.id_localisation=p.id_localisation
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution) group by nom_speculation order by nom_speculation"
+
+            FillChart(VarieteProductionCommandeChart, getVarieteProduite, "", "Quantité produite en KG", "", "nom_speculation", "quantite_produite", fromProductionChart:=True)
+
+            FillTable(query:=getVarieteProduiteTable, Table:=DataVarieteProduction, selector:=NomSpeculationProduction)
+
+        ElseIf VueParVariete.Checked = True Then
+            Dim getVarieteProduiteTable = $"select nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau niveau
                                     from production p
                                     inner join localisation l on l.id_localisation=p.id_localisation
                                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
                                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
+                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) 
+                                    group by p.id_production order by nom_variete"
 
-        Dim getVarieteProduite = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau
+            Dim getVarieteProduite = $"select nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau niveau
                                     from production p
                                     inner join localisation l on l.id_localisation=p.id_localisation
                                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
                                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
+                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete order by nom_variete"
 
 
-        'If (CheckedLessThanItems(CurrentProductionCheckedList) And
-        '    CheckedLessThanItems(CurrentLocaliteCheckedList) And
-        '    CheckedLessThanItems(CurrentNiveauCheckedList)) Then
+            If CheckedLessThanItems(CurrentVarieteProductionCheckedList, FiltrerVariete) Then
+                getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentVarieteProductionCheckedList, "nom_variete")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentVarieteProductionCheckedList, "nom_variete")
+            End If
+            If CheckedLessThanItems(CurrentLocaliteProductionCheckedList, FiltrerLocalite) Then
+                getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentLocaliteProductionCheckedList, "village")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentLocaliteProductionCheckedList, "village")
+            End If
+            If CheckedLessThanItems(CurrentNiveauProductionCheckedList, FiltrerNiveau) Then
+                getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentNiveauProductionCheckedList, "nom_niveau")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentNiveauProductionCheckedList, "nom_niveau")
+            End If
 
-        '    getVarieteProduiteTable = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau
-        '                            from production p
-        '                            inner join localisation l on l.id_localisation=p.id_localisation
-        '                            inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
-        '                            inner join niveau_de_production n on n.id_niveau=ni.id_niveau
-        '                            inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-        '                            inner join variete v on v.id_variete=vi.id_variete
-        '                            where (
-        '                                   p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-        '                                   nom_variete in ({GetCheckedValues(CurrentProductionCheckedList)}) and
-        '                                   village in ({GetCheckedValues(CurrentLocaliteCheckedList)}) and
-        '                                   nom_niveau in ({GetCheckedValues(CurrentNiveauCheckedList)})
-        '                                   )
-        '                                   group by nom_variete"
-
-        '    getVarieteProduite = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite_produite, village localite, nom_niveau
-        '                            from production p
-        '                            inner join localisation l on l.id_localisation=p.id_localisation
-        '                            inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
-        '                            inner join niveau_de_production n on n.id_niveau=ni.id_niveau
-        '                            inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-        '                            inner join variete v on v.id_variete=vi.id_variete
-        '                            where (
-        '                                   p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-        '                                   nom_variete in ({GetCheckedValues(CurrentProductionCheckedList)}) and
-        '                                   village in ({GetCheckedValues(CurrentLocaliteCheckedList)}) and
-        '                                   nom_niveau in ({GetCheckedValues(CurrentNiveauCheckedList)})
-        '                                   ) 
-        '                                   group by nom_variete"
-
-        If CheckedLessThanItems(CurrentProductionCheckedList) Then
-            getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentProductionCheckedList, "nom_variete")
-            getVarieteProduite = InsertFilter(getVarieteProduite, CurrentProductionCheckedList, "nom_variete")
-        End If
-        If CheckedLessThanItems(CurrentLocaliteCheckedList) Then
-            getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentLocaliteCheckedList, "village")
-            getVarieteProduite = InsertFilter(getVarieteProduite, CurrentLocaliteCheckedList, "village")
-        End If
-        If CheckedLessThanItems(CurrentNiveauCheckedList) Then
-            getVarieteProduiteTable = InsertFilter(getVarieteProduiteTable, CurrentNiveauCheckedList, "nom_niveau")
-            getVarieteProduite = InsertFilter(getVarieteProduite, CurrentNiveauCheckedList, "nom_niveau")
-        End If
-
-        If FiltrerParDateProduction.Checked Then
+            If FiltrerParDateProduction.Checked Then
                 getVarieteProduiteTable = InsertDateFilter(getVarieteProduiteTable, "date_de_production", DateDebutProduction, DateFinProduction)
                 getVarieteProduite = InsertDateFilter(getVarieteProduite, "date_de_production", DateDebutProduction, DateFinProduction)
             End If
 
-        'MessageBox.Show(GetCheckedValues(CurrentNiveauCheckedList))
+            'MessageBox.Show(GetCheckedValues(CurrentNiveauProductionCheckedList))
 
+            FillChart(VarieteProductionCommandeChart, getVarieteProduite, "", "Quantité produite en KG", "", "nom_variete", "quantite_produite", fromProductionChart:=True)
 
-        FillChart(VarieteProductionCommandeChart, getVarieteProduite, "", "Quantité produite en KG", "", "nom_variete", "quantite_produite", fromProductionChart:=True)
+            FillTable(query:=getVarieteProduiteTable, Table:=DataVarieteProduction, selector:=NomSpeculationProduction)
 
-        FillTable(query:=getVarieteProduiteTable, Table:=DataVarieteProduction, selector:=NomSpeculationProduction)
+            HideColumnIfChecked("localite", DataVarieteProduction, FiltrerLocalite)
+            HideColumnIfChecked("niveau", DataVarieteProduction, FiltrerNiveau)
+        End If
 
 
     End Sub
 
     Private Sub LoadCommandeProductionChart()
+        If VueGlobaleGen.Checked = True Then
+            Dim getCommandeProductionTable = $"select s.nom_speculation,
+                                                coalesce(sum(quantite_produite - stock_de_securite), 0) quantite_produite,
+                                                c.quantite_commandee
+                                                from production p
+                                                inner join localisation l on l.id_localisation=p.id_localisation
+                                                inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                                                inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                                                inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                                inner join variete v on v.id_variete=vi.id_variete
+                                                inner join speculation s on v.id_speculation=s.id_speculation
+                                                inner join (
+                                                select s.nom_speculation, coalesce(sum(quantite), 0) quantite_commandee
+                                                from production p2
+                                                left join commande c on c.id_production=p2.id_production
+                                                inner join variete_institution vi on vi.id_variete_institution=p2.id_variete_institution
+                                                inner join variete v on v.id_variete=vi.id_variete
+                                                inner join speculation s on s.id_speculation=v.id_speculation
+                                                where (p2.id_institution=1)
+                                                group by nom_speculation
+                                                order by nom_speculation
+                                                ) c on c.nom_speculation = s.nom_speculation
+                                                where (p.id_institution=@id_institution)
+                                                group by nom_speculation
+                                                order by nom_speculation"
 
-        Dim getCommandeProductionTable = $"select p.id_production, nom_variete, sum(quantite_produite - stock_de_securite) quantite, village localite, nom_niveau
-                                        from production p
-                                        inner join localisation l on l.id_localisation=p.id_localisation
-                                        inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
-                                        inner join niveau_de_production n on n.id_niveau=ni.id_niveau
-                                        inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                        inner join variete v on v.id_variete=vi.id_variete
-                                        where (
-                                        p.id_institution=@id_institution and v.id_speculation=@nom_speculation )
-                                        group by p.id_production"
+            Dim getVarieteProduite = $"select  nom_speculation, sum(quantite_produite - stock_de_securite) quantite
+                                    from production p
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution)
+                                    group by nom_speculation
+                                    order by nom_speculation"
 
-        Dim getVarieteProduite = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite, village localite, nom_niveau
+            Dim getVarieteCommandee = $"select nom_speculation, coalesce(sum(quantite), 0) quantite
+                                    from production p
+                                    left join commande c on c.id_production=p.id_production
+                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                    inner join variete v on v.id_variete=vi.id_variete
+                                    inner join speculation s on s.id_speculation=v.id_speculation
+                                    where (p.id_institution=@id_institution)
+                                    group by nom_speculation
+                                    order by nom_speculation"
+
+            FillChart(CommandeProductionChart, getVarieteProduite, getVarieteCommandee, "Quantité produite en KG", "Quantité commandée en KG", "nom_speculation", "quantite")
+
+            FillTable(query:=getCommandeProductionTable, Table:=DataCommandeProduction, selector:=NomSpeculationGen)
+        ElseIf VueDetailleeGen.Checked = True Then
+            Dim getCommandeProductionTable = $"select v.nom_variete, village localite, nom_niveau,
+                                                coalesce(sum(quantite_produite - stock_de_securite), 0) quantite_produite,
+                                                c.quantite_commandee
+                                                from production p
+                                                inner join localisation l on l.id_localisation=p.id_localisation
+                                                inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
+                                                inner join niveau_de_production n on n.id_niveau=ni.id_niveau
+                                                inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+                                                inner join variete v on v.id_variete=vi.id_variete
+                                                inner join (
+                                                select c.id_client, p2.id_production, v.nom_variete, coalesce(sum(quantite), 0) quantite_commandee
+                                                from production p2
+                                                left join commande c on c.id_production=p2.id_production
+                                                inner join variete_institution vi on vi.id_variete_institution=p2.id_variete_institution
+                                                inner join variete v on v.id_variete=vi.id_variete
+                                                inner join speculation s on s.id_speculation=v.id_speculation
+                                                where (p2.id_institution=@id_institution and s.id_speculation=@nom_speculation)
+                                                group by p2.id_production                                    
+                                                order by v.nom_variete
+                                                ) c on c.id_production = p.id_production
+                                                left join client cl on cl.id_client = c.id_client  
+                                                where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation)
+                                                group by p.id_production
+                                                order by v.nom_variete"
+
+            Dim getVarieteProduite = $"select  nom_variete, sum(quantite_produite - stock_de_securite) quantite
                                     from production p
                                     inner join localisation l on l.id_localisation=p.id_localisation
                                     inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
                                     inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                                     inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                     inner join variete v on v.id_variete=vi.id_variete
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
+                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation)
+                                    group by nom_variete
+                                    order by nom_variete"
 
-        Dim getVarieteCommandee = $"select id_speculation, nom_variete, sum(quantite) quantite
-                                    from commande c
-                                    inner join production p on p.id_production=c.id_production
-                                    inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                    inner join variete v on v.id_variete=vi.id_variete
-                                    where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation) group by nom_variete"
-
-        If CheckedLessThanItems(CurrentGenVarieteCheckedList) And
-            CheckedLessThanItems(CurrentGenLocaliteCheckedList) And
-            CheckedLessThanItems(CurrentGenNiveauCheckedList) Then
-
-            getCommandeProductionTable = $"select p.id_production, nom_variete, sum(quantite_produite - stock_de_securite) quantite, village localite, nom_niveau
+            Dim getVarieteCommandee = $"select nom_variete, coalesce(sum(quantite), 0) quantite
                                         from production p
                                         inner join localisation l on l.id_localisation=p.id_localisation
                                         inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
                                         inner join niveau_de_production n on n.id_niveau=ni.id_niveau
                                         inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                                         inner join variete v on v.id_variete=vi.id_variete
-                                        where (
-                                        p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-                                        nom_variete in ({GetCheckedValues(CurrentGenVarieteCheckedList)}) and
-                                        village in ({GetCheckedValues(CurrentGenLocaliteCheckedList)}) and
-                                        nom_niveau in ({GetCheckedValues(CurrentGenNiveauCheckedList)})
-                                        )
-                                        group by p.id_production"
+                                        left join commande c on c.id_production=p.id_production
+                                        left join client cl on cl.id_client = c.id_client  
+                                        where (p.id_institution=@id_institution and v.id_speculation=@nom_speculation)
+                                        group by nom_variete
+                                        order by nom_variete"
 
-            getVarieteProduite = $"select p.id_production, id_speculation, nom_variete, sum(quantite_produite - stock_de_securite) quantite, village localite, nom_niveau
-                                        from production p
-                                        inner join localisation l on l.id_localisation=p.id_localisation
-                                        inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
-                                        inner join niveau_de_production n on n.id_niveau=ni.id_niveau
-                                        inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                        inner join variete v on v.id_variete=vi.id_variete
-                                        where (
-                                        p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-                                        nom_variete in ({GetCheckedValues(CurrentGenVarieteCheckedList)}) and
-                                        village in ({GetCheckedValues(CurrentGenLocaliteCheckedList)}) and
-                                        nom_niveau in ({GetCheckedValues(CurrentGenNiveauCheckedList)})
-                                        )
-                                        group by nom_variete"
-            'where (
-            '       p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-            '       nom_variete in ({GetCheckedValues(CurrentGenVarieteCheckedList)}) and
-            '       village in ({GetCheckedValues(CurrentGenLocaliteCheckedList)}) and
-            '       nom_niveau in ({GetCheckedValues(CurrentGenNiveauCheckedList)}) and
-            '       nom_complet_structure in ({GetCheckedValues(CurrentGenClientCheckedList)})
-            '       ) 
-            '       group by nom_variete
-
-            getVarieteCommandee = $"select p.id_production, id_speculation, nom_variete, sum(quantite) quantite, village localite, nom_niveau
-                                        from commande c
-                                        inner join production p on p.id_production=c.id_production
-                                        inner join localisation l on l.id_localisation=p.id_localisation
-                                        inner join niveau_institution ni on ni.id_niveau_institution=p.id_niveau_institution
-                                        inner join niveau_de_production n on n.id_niveau=ni.id_niveau
-                                        inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                                        inner join variete v on v.id_variete=vi.id_variete
-                                        inner join client cl on cl.id_client = c.id_client 
-                                        where (
-                                        p.id_institution=@id_institution and v.id_speculation=@nom_speculation and
-                                        nom_variete in ({GetCheckedValues(CurrentGenVarieteCheckedList)}) and
-                                        village in ({GetCheckedValues(CurrentGenLocaliteCheckedList)}) and
-                                        nom_niveau in ({GetCheckedValues(CurrentGenNiveauCheckedList)}) 
-                                        ) 
-                                               group by nom_variete"
-
-            If FiltrerParDateGen.Checked Then
+            If FiltrerDateGen.Checked Then
                 getCommandeProductionTable = InsertDateFilter(getCommandeProductionTable, "date_de_production", DateDebutGen, DateFinGen)
                 getVarieteProduite = InsertDateFilter(getVarieteProduite, "date_de_production", DateDebutGen, DateFinGen)
                 getVarieteCommandee = InsertDateFilter(getVarieteCommandee, "date_expression_besoin_client", DateDebutGen, DateFinGen)
             End If
-        End If
 
-        If CheckedLessThanItems(CurrentGenClientCheckedList) Then
-            getCommandeProductionTable = InsertClientFilter(getCommandeProductionTable, CurrentGenClientCheckedList)
-            getVarieteCommandee = InsertClientFilter(getVarieteCommandee, CurrentGenClientCheckedList)
+            If CheckedLessThanItems(CurrentGenVarieteCheckedList, FiltrerVarieteGen) Then
+                getCommandeProductionTable = InsertFilter(getCommandeProductionTable, CurrentGenVarieteCheckedList, "v.nom_variete")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentGenVarieteCheckedList, "v.nom_variete")
+                getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentGenVarieteCheckedList, "v.nom_variete")
+            End If
+
+            If CheckedLessThanItems(CurrentGenLocaliteCheckedList, FiltrerLocaliteGen) Then
+                getCommandeProductionTable = InsertFilter(getCommandeProductionTable, CurrentGenLocaliteCheckedList, "village")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentGenLocaliteCheckedList, "village")
+            End If
+
+            If CheckedLessThanItems(CurrentGenNiveauCheckedList, FiltrerNiveauGen) Then
+                getCommandeProductionTable = InsertFilter(getCommandeProductionTable, CurrentGenNiveauCheckedList, "nom_niveau")
+                getVarieteProduite = InsertFilter(getVarieteProduite, CurrentGenNiveauCheckedList, "nom_niveau")
+            End If
+
+            If CheckedLessThanItems(CurrentGenClientCheckedList, FiltrerClientGen) Then
+
+
+                getCommandeProductionTable = InsertFilter(getCommandeProductionTable, CurrentGenClientCheckedList, "nom_complet_structure")
+                getVarieteCommandee = getVarieteCommandee.Replace(
+                    "coalesce(sum(quantite), 0) quantite",
+                    $"if(nom_complet_structure in ({GetCheckedValues(CurrentGenClientCheckedList)}), coalesce(sum(quantite), 0), 0) quantite"
+                    )
+                'MessageBox.Show(getVarieteCommandee)
+                'getVarieteCommandee = InsertFilter(getVarieteCommandee, CurrentGenClientCheckedList, "nom_complet_structure")
+            End If
+
+            FillChart(CommandeProductionChart, getVarieteProduite, getVarieteCommandee, "Quantité produite en KG", "Quantité commandée en KG", "nom_variete", "quantite")
+
+            FillTable(query:=getCommandeProductionTable, Table:=DataCommandeProduction, selector:=NomSpeculationGen)
+            HideColumnIfChecked("localite", DataCommandeProduction, FiltrerLocaliteGen)
+            HideColumnIfChecked("nom_niveau", DataCommandeProduction, FiltrerNiveauGen)
         End If
-        FillChart(CommandeProductionChart, getVarieteProduite, getVarieteCommandee, "Quantité produite en KG", "Quantité commandée en KG", "nom_variete", "quantite")
-        FillTable(query:=getCommandeProductionTable, Table:=DataCommandeProduction, selector:=NomSpeculationGen)
 
     End Sub
 
@@ -475,9 +638,6 @@ Public Class FormRapports
         End Try
     End Sub
 
-    Private Function InsertClientFilter(query As String, CurrentCheckedList As CheckedListBox, Optional clientColumnName As String = "nom_complet_structure")
-        Return query.Insert(query.LastIndexOf(")"), $" and {clientColumnName} in ({GetCheckedValues(CurrentCheckedList)}) ")
-    End Function
     Private Function InsertFilter(query As String, CurrentCheckedList As CheckedListBox, columnName As String)
         Return query.Insert(query.LastIndexOf(")"), $" and {columnName} in ({GetCheckedValues(CurrentCheckedList)}) ")
     End Function
@@ -512,52 +672,52 @@ Public Class FormRapports
     '    geoMap.Dock = DockStyle.Fill
     'End Sub
 
-    Private Sub LoadSpeculationChart()
-        Dim getProduction = $"select nom_speculation, sum(quantite_produite) quantite
-                             from production p
-                             inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
-                             inner join variete v on v.id_variete = vi.id_variete
-                             inner join speculation s on s.id_speculation = v.id_speculation
-                             where vi.id_institution = @id_institution 
-                             group by nom_speculation"
+    'Private Sub LoadSpeculationChart()
+    '    Dim getProduction = $"select nom_speculation, sum(quantite_produite) quantite
+    '                         from production p
+    '                         inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
+    '                         inner join variete v on v.id_variete = vi.id_variete
+    '                         inner join speculation s on s.id_speculation = v.id_speculation
+    '                         where vi.id_institution = @id_institution 
+    '                         group by nom_speculation"
 
-        Dim fontSize As Double = 22
-        Dim command = New MySqlCommand(getProduction, connection)
+    '    Dim fontSize As Double = 22
+    '    Dim command = New MySqlCommand(getProduction, connection)
 
-        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+    '    command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
 
-        Dim values = New ChartValues(Of Integer)
-        Dim labels = New List(Of String)
+    '    Dim values = New ChartValues(Of Integer)
+    '    Dim labels = New List(Of String)
 
-        Dim reader = command.ExecuteReader()
+    '    Dim reader = command.ExecuteReader()
 
-        While reader.Read()
-            values.Add(reader.GetInt64("quantite"))
-            labels.Add($"{reader.GetString("nom_speculation")}")
-        End While
-
-
-        'CartesianChart1.Series = New SeriesCollection From {
-        '        New ColumnSeries With {
-        '            .Title = "",
-        '            .Values = values,
-        '            .FontSize = fontSize
-        '        }
-        '    }
-
-        'CartesianChart1.AxisX.Add(New Axis With {
-        '        .Title = "Spéculation",
-        '        .Labels = labels,
-        '        .FontSize = fontSize
-        '    })
-        'CartesianChart1.AxisY.Add(New Axis With {
-        '        .Title = "Quantite produite (en KG)",
-        '        .FontSize = fontSize
-        '    })
+    '    While reader.Read()
+    '        values.Add(reader.GetInt64("quantite"))
+    '        labels.Add($"{reader.GetString("nom_speculation")}")
+    '    End While
 
 
-        reader.Close()
-    End Sub
+    '    'CartesianChart1.Series = New SeriesCollection From {
+    '    '        New ColumnSeries With {
+    '    '            .Title = "",
+    '    '            .Values = values,
+    '    '            .FontSize = fontSize
+    '    '        }
+    '    '    }
+
+    '    'CartesianChart1.AxisX.Add(New Axis With {
+    '    '        .Title = "Spéculation",
+    '    '        .Labels = labels,
+    '    '        .FontSize = fontSize
+    '    '    })
+    '    'CartesianChart1.AxisY.Add(New Axis With {
+    '    '        .Title = "Quantite produite (en KG)",
+    '    '        .FontSize = fontSize
+    '    '    })
+
+
+    '    reader.Close()
+    'End Sub
     Private Sub InitChart(chart As DataVisualization.Charting.Chart, serieName1 As String, serieName2 As String)
         chart.Series(serieName1).LabelForeColor = chart.Series(serieName1).Color
 
@@ -596,7 +756,6 @@ Public Class FormRapports
         End If
 
         If fromCommandeChart = True Then
-            fromProductionChart = False
             command.Parameters.AddWithValue("@nom_speculation", NomSpeculationCommande.SelectedValue)
             'MessageBox.Show($"FROM COMMANDE {fromCommandeChart}")
         End If
@@ -605,7 +764,7 @@ Public Class FormRapports
 
         chart.Series(seriesName).Points.Clear()
         While reader.Read()
-            chart.Series(seriesName).Points.AddXY($"{reader.GetString(keyName)}", reader.GetUInt64(valueName))
+            chart.Series(seriesName).Points.AddXY(reader.GetString(keyName), reader.GetUInt64(valueName))
         End While
         reader.Close()
     End Sub
@@ -626,6 +785,16 @@ Public Class FormRapports
         commandAdapter.Fill(dataTable)
 
         Table.DataSource = dataTable
+
+    End Sub
+
+    Private Sub HideColumnIfChecked(columnName As String, dataTable As DataGridView, checkBox As CheckBox)
+        Try
+            dataTable.Columns(columnName).Visible = checkBox.Checked
+        Catch ex As Exception
+            MessageBox.Show("Column does not exist")
+        End Try
+
     End Sub
 
     Private Sub FillChart(chart As DataVisualization.Charting.Chart, query1 As String, query2 As String, seriesName1 As String, seriesName2 As String, keyName As String, valueName As String, Optional fromCommandeChart As Boolean = False, Optional fromProductionChart As Boolean = False)
@@ -657,12 +826,19 @@ Public Class FormRapports
 
     End Sub
 
-
-
     Private Sub NomSpeculation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NomSpeculationCommande.SelectedIndexChanged
         'Try
-        FillVarieteCheckBoxList()
-        FillClientCheckBoxList(selector:=NomSpeculationCommande, checkedList:=ClientCommandeCheckedList, currentCheckedList:=CurrentClientCheckedList)
+        FillAllCheckedList(
+        selector:=NomSpeculationCommande,
+        variete:=VarieteCommandeCheckedList,
+        currentVariete:=CurrentVarieteCommandeCheckedList,
+        localite:=LocaliteCommandeCheckedList,
+        currentLocalite:=CurrentLocaliteCommandeCheckedList,
+        niveau:=NiveauCommandeCheckedList,
+        currentNiveau:=CurrentNiveauCommandeCheckedList,
+        client:=ClientCommandeCheckedList,
+        currentClient:=CurrentClientCommandeCheckedList
+        )
 
         UpdateTitle(NomSpeculationCommande, VarieteCommandeLivraisonChart)
 
@@ -674,10 +850,17 @@ Public Class FormRapports
 
     Private Sub NomSpeculationProduction_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NomSpeculationProduction.SelectedIndexChanged
         'Try
-        FillVarieteProductionCheckBoxList(selector:=NomSpeculationProduction, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentProductionCheckedList)
-        FillLocaliteProductionCheckedList(selector:=NomSpeculationProduction, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteCheckedList)
-        FillNiveauCheckedList(selector:=NomSpeculationProduction, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauCheckedList)
+        FillAllCheckedList(
+        selector:=NomSpeculationProduction,
+        variete:=VarieteProductionCheckedList,
+        currentVariete:=CurrentVarieteProductionCheckedList,
+        localite:=LocaliteCheckedList,
+        currentLocalite:=CurrentLocaliteProductionCheckedList,
+        niveau:=NiveauCheckedList,
+        currentNiveau:=CurrentNiveauProductionCheckedList
+        )
         UpdateTitle(NomSpeculationProduction, VarieteProductionCommandeChart)
+        FiltrerParDateProduction.Checked = False
 
         LoadVarieteProductionChart()
         'Catch ex As Exception
@@ -685,12 +868,39 @@ Public Class FormRapports
         'End Try
     End Sub
 
-    Private Sub CheckedListBox1_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles VarieteCommandeCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=VarieteCommandeCheckedList, currentCheckedList:=CurrentCommandeCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
+    Private Sub NomSpeculationGen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NomSpeculationGen.SelectedIndexChanged
+        FillAllCheckedList(
+        selector:=NomSpeculationGen,
+        variete:=GenVarieteCheckedList,
+        currentVariete:=CurrentGenVarieteCheckedList,
+        localite:=GenLocaliteCheckedList,
+        currentLocalite:=CurrentGenLocaliteCheckedList,
+        niveau:=GenNiveauCheckedList,
+        currentNiveau:=CurrenGentNiveauCheckedList,
+        client:=GenClientCheckedList,
+        currentClient:=CurrentGenClientCheckedList
+        )
+
+        UpdateTitle(NomSpeculationGen, CommandeProductionChart)
+
+        LoadCommandeProductionChart()
     End Sub
 
+    Private Sub VarieteCommandeCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles VarieteCommandeCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=VarieteCommandeCheckedList, currentCheckedList:=CurrentVarieteCommandeCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
+    End Sub
+
+    Private Sub LocaliteCommandeCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles LocaliteCommandeCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=LocaliteCommandeCheckedList, currentCheckedList:=CurrentLocaliteCommandeCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
+    End Sub
+
+    Private Sub NiveauCommandeCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles NiveauCommandeCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=NiveauCommandeCheckedList, currentCheckedList:=CurrentNiveauCommandeCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
+    End Sub
+
+
     Private Sub ClientCommandeCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles ClientCommandeCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=ClientCommandeCheckedList, currentCheckedList:=CurrentClientCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
+        UpdateChartOnCheck(e, checkedList:=ClientCommandeCheckedList, currentCheckedList:=CurrentClientCommandeCheckedList, updateCallBack:=AddressOf LoadVarieteChart)
     End Sub
 
 
@@ -706,28 +916,22 @@ Public Class FormRapports
         Return values.Substring(2)
     End Function
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles Graphique.CheckedChanged
-        ToggleTableChart(Graphique, Tableau, VarieteCommandeLivraisonChart, DataCommandeLivraison)
-    End Sub
     Private Sub ToggleTableChart(ChartButton As RadioButton, TableButton As RadioButton, Chart As DataVisualization.Charting.Chart, DataTable As DataGridView)
         If ChartButton.Checked = True Then
             Chart.Visible = True
             DataTable.Visible = False
+            'MessageBox.Show("FROM CHART BUTTON CHECKED")
         ElseIf TableButton.Checked = True Then
             Chart.Visible = False
             DataTable.Visible = True
         End If
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerParDate.CheckedChanged
-        ToggleDatePickers(FiltrerParDate, DateDebut, DateFin, AddressOf LoadVarieteChart)
-    End Sub
-
     Private Sub ToggleDatePickers(FilterCheckBox As CheckBox, StartDate As DateTimePicker, EndDate As DateTimePicker, UpdateCallBack As Action)
         If FilterCheckBox.Checked = True Then
             StartDate.Visible = True
             EndDate.Visible = True
-        ElseIf FiltrerParDate.Checked = False Then
+        ElseIf FilterCheckBox.Checked = False Then
             StartDate.Visible = False
             EndDate.Visible = False
             UpdateCallBack()
@@ -743,38 +947,39 @@ Public Class FormRapports
     End Sub
 
     Private Sub VarieteProductionCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles VarieteProductionCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentProductionCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
+        UpdateChartOnCheck(e, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentVarieteProductionCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
+
+        'FillLocaliteCheckedList(selector:=NomSpeculationProduction, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteProductionCheckedList)
+        'FillNiveauCheckedList(selector:=NomSpeculationProduction, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauProductionCheckedList)
+    End Sub
+    Private Sub LocaliteCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles LocaliteCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteProductionCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
+
+        'FillVarieteCheckedList(selector:=NomSpeculationProduction, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentVarieteProductionCheckedList)
+        'FillNiveauCheckedList(selector:=NomSpeculationProduction, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauProductionCheckedList)
+    End Sub
+    Private Sub NiveauCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles NiveauCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauProductionCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
+
+        'FillVarieteCheckedList(selector:=NomSpeculationProduction, checkedList:=VarieteProductionCheckedList, currentCheckedList:=CurrentVarieteProductionCheckedList)
+        'FillLocaliteCheckedList(selector:=NomSpeculationProduction, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteProductionCheckedList)
     End Sub
 
     Private Sub UpdateChartOnCheck(e As ItemCheckEventArgs, checkedList As CheckedListBox, currentCheckedList As CheckedListBox, updateCallBack As Action)
         If e.NewValue = 0 Then
             If (currentCheckedList.Items.Count > 0 And currentCheckedList.Items.Count <= checkedList.Items.Count) Then
                 currentCheckedList.SetItemCheckState(e.Index, e.NewValue)
-                updateCallBack()
             End If
         Else
             If (currentCheckedList.Items.Count > 0 And currentCheckedList.Items.Count = checkedList.Items.Count) Then
                 currentCheckedList.SetItemCheckState(e.Index, e.NewValue)
-                updateCallBack()
             End If
         End If
+        updateCallBack()
     End Sub
-
-    Private Sub LocaliteCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles LocaliteCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=LocaliteCheckedList, currentCheckedList:=CurrentLocaliteCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
-    End Sub
-    Private Sub NiveauCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles NiveauCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=NiveauCheckedList, currentCheckedList:=CurrentNiveauCheckedList, updateCallBack:=AddressOf LoadVarieteProductionChart)
-    End Sub
-
     Private Sub GraphiqueProduction_CheckedChanged(sender As Object, e As EventArgs) Handles GraphiqueProduction.CheckedChanged
         ToggleTableChart(GraphiqueProduction, TableauProduction, VarieteProductionCommandeChart, DataVarieteProduction)
     End Sub
-
-    Private Sub FiltrerParDateProduction_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerParDateProduction.CheckedChanged
-        ToggleDatePickers(FiltrerParDateProduction, DateDebutProduction, DateFinProduction, AddressOf LoadVarieteProductionChart)
-    End Sub
-
 
     Private Sub DateDebutProduction_ValueChanged(sender As Object, e As EventArgs) Handles DateDebutProduction.ValueChanged
         LoadVarieteProductionChart()
@@ -784,26 +989,12 @@ Public Class FormRapports
         LoadVarieteProductionChart()
     End Sub
 
-    Private Sub NomSpeculationGen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NomSpeculationGen.SelectedIndexChanged
-        FillVarieteProductionCheckBoxList(selector:=NomSpeculationGen, checkedList:=GenVarieteCheckedList, currentCheckedList:=CurrentGenVarieteCheckedList)
-        FillLocaliteProductionCheckedList(selector:=NomSpeculationGen, checkedList:=GenLocaliteCheckedList, currentCheckedList:=CurrentGenLocaliteCheckedList)
-        FillNiveauCheckedList(selector:=NomSpeculationGen, checkedList:=GenNiveauCheckedList, currentCheckedList:=CurrentGenNiveauCheckedList)
-        FillClientCheckBoxList(selector:=NomSpeculationGen, checkedList:=GenClientCheckedList, currentCheckedList:=CurrentGenClientCheckedList)
-        UpdateTitle(NomSpeculationGen, CommandeProductionChart)
-
-        LoadCommandeProductionChart()
-    End Sub
-
-    Private Sub FiltrerParDateGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerParDateGen.CheckedChanged
-        ToggleDatePickers(FiltrerParDateGen, DateDebutGen, DateFinGen, AddressOf LoadCommandeProductionChart)
+    Private Sub FiltrerParDateGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerDateGen.CheckedChanged
+        ToggleDatePickers(FiltrerDateGen, DateDebutGen, DateFinGen, AddressOf LoadCommandeProductionChart)
     End Sub
 
     Private Sub DateDebutGen_ValueChanged(sender As Object, e As EventArgs) Handles DateDebutGen.ValueChanged
         LoadCommandeProductionChart()
-    End Sub
-
-    Private Sub GraphiqueGen_CheckedChanged(sender As Object, e As EventArgs) Handles GraphiqueGen.CheckedChanged
-        ToggleTableChart(GraphiqueGen, TableauGen, CommandeProductionChart, DataCommandeProduction)
     End Sub
 
     Private Sub DateFinGen_ValueChanged(sender As Object, e As EventArgs) Handles DateFinGen.ValueChanged
@@ -822,11 +1013,190 @@ Public Class FormRapports
         UpdateChartOnCheck(e, checkedList:=GenNiveauCheckedList, currentCheckedList:=CurrentGenNiveauCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
     End Sub
 
+    Private Sub FiltrerVariete_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerVariete.CheckedChanged
+        Timer2.Start()
+        LoadVarieteProductionChart()
+    End Sub
+
+    Private Sub FiltrerLocalite_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerLocalite.CheckedChanged
+        Timer3.Start()
+        LoadVarieteProductionChart()
+    End Sub
+
+    Private Sub FiltrerNiveau_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerNiveau.CheckedChanged
+        Timer4.Start()
+        LoadVarieteProductionChart()
+    End Sub
+
+    Private Sub FiltrerParDateProduction_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerParDateProduction.CheckedChanged
+        Timer5.Start()
+        If FiltrerParDateProduction.Checked = False Then
+            LoadVarieteProductionChart()
+        End If
+    End Sub
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        CollapseElement(PanelVariete, Timer2, isVarieteCollapsed)
+    End Sub
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        CollapseElement(PanelLocalite, Timer3, isLocaliteCollapsed)
+    End Sub
+    Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
+        CollapseElement(PanelNiveau, Timer4, isNiveauCollapsed)
+    End Sub
+    Private Sub Timer5_Tick(sender As Object, e As EventArgs) Handles Timer5.Tick
+        CollapseElement(PanelDate, Timer5, isDateCollapsed)
+    End Sub
+
+    Private Sub CollapseElement(panel As Panel, timer As Timer, ByRef isCollapsed As Boolean)
+        If isCollapsed = True Then
+            panel.Height += 10
+            If panel.Size.Height = panel.MaximumSize.Height Then
+                timer.Stop()
+                isCollapsed = False
+            End If
+        Else
+            panel.Height -= 10
+            If panel.Size.Height = panel.MinimumSize.Height Then
+                timer.Stop()
+                isCollapsed = True
+            End If
+        End If
+    End Sub
+
+    Private Sub TableauProduction_CheckedChanged(sender As Object, e As EventArgs) Handles TableauProduction.CheckedChanged
+        ToggleTableChart(GraphiqueProduction, TableauProduction, VarieteProductionCommandeChart, DataVarieteProduction)
+    End Sub
+
+    Private Sub VueParSpeculation_CheckedChanged_1(sender As Object, e As EventArgs) Handles VueParSpeculation.CheckedChanged
+        ToggleDetailPanel(VueParVariete, PanelVueParVariete, AddressOf LoadVarieteProductionChart)
+    End Sub
+    Private Sub ToggleDetailPanel(check As RadioButton, panel As Panel, updateCallBack As Action)
+        panel.Visible = check.Checked
+
+        updateCallBack()
+    End Sub
+    Private Sub Tableau_CheckedChanged(sender As Object, e As EventArgs) Handles Tableau.CheckedChanged
+        ToggleTableChart(Graphique, Tableau, VarieteCommandeLivraisonChart, DataCommandeLivraison)
+    End Sub
+    Private Sub Graphique_CheckedChanged_1(sender As Object, e As EventArgs) Handles Graphique.CheckedChanged
+        ToggleTableChart(Graphique, Tableau, VarieteCommandeLivraisonChart, DataCommandeLivraison)
+    End Sub
+
+    Private Sub VueDetailleeCommande_CheckedChanged(sender As Object, e As EventArgs) Handles VueDetailleeCommande.CheckedChanged
+        ToggleDetailPanel(VueDetailleeCommande, PanelDetailCommande, AddressOf LoadVarieteChart)
+    End Sub
+
+    Private Sub FiltrerVarieteCommande_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerVarieteCommande.CheckedChanged
+        Timer6.Start()
+        LoadVarieteChart()
+    End Sub
+
+    Private Sub FiltrerLocaliteCommande_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerLocaliteCommande.CheckedChanged
+        Timer7.Start()
+        LoadVarieteChart()
+    End Sub
+
+    Private Sub FiltrerNiveauCommande_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerNiveauCommande.CheckedChanged
+        Timer8.Start()
+        LoadVarieteChart()
+    End Sub
+
+    Private Sub FiltrerClientCommande_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerClientCommande.CheckedChanged
+        Timer9.Start()
+        LoadVarieteChart()
+    End Sub
+
+    Private Sub FiltrerDateCommande_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerDateCommande.CheckedChanged
+        Timer10.Start()
+        If FiltrerDateCommande.Checked = False Then
+            LoadVarieteChart()
+        End If
+    End Sub
+
+    Private Sub Timer6_Tick(sender As Object, e As EventArgs) Handles Timer6.Tick
+        CollapseElement(PanelVarieteCommande, Timer6, isVarieteCollapsedCommande)
+    End Sub
+    Private Sub Timer7_Tick(sender As Object, e As EventArgs) Handles Timer7.Tick
+        CollapseElement(PanelLocaliteCommande, Timer7, isLocaliteCollapsedCommande)
+    End Sub
+    Private Sub Timer8_Tick(sender As Object, e As EventArgs) Handles Timer8.Tick
+        CollapseElement(PanelNiveauCommande, Timer8, isNiveauCollapsedCommande)
+    End Sub
+    Private Sub Timer9_Tick(sender As Object, e As EventArgs) Handles Timer9.Tick
+        CollapseElement(PanelClientCommande, Timer9, isClientCollapsedCommande)
+    End Sub
+
+    Private Sub Timer10_Tick(sender As Object, e As EventArgs) Handles Timer10.Tick
+        CollapseElement(PanelDateCommande, Timer10, isDateCollapsedCommande)
+    End Sub
+
+    Private Sub TableauGen_CheckedChanged(sender As Object, e As EventArgs) Handles TableauGen.CheckedChanged
+        ToggleTableChart(GraphiqueGen, TableauGen, CommandeProductionChart, DataCommandeProduction)
+    End Sub
+    Private Sub GraphiqueGen_CheckedChanged(sender As Object, e As EventArgs) Handles GraphiqueGen.CheckedChanged
+        ToggleTableChart(GraphiqueGen, TableauGen, CommandeProductionChart, DataCommandeProduction)
+    End Sub
+
+    Private Sub VueDetailleeGen_CheckedChanged(sender As Object, e As EventArgs) Handles VueDetailleeGen.CheckedChanged
+        ToggleDetailPanel(VueDetailleeGen, PanelDetailGen, AddressOf LoadCommandeProductionChart)
+    End Sub
+
+    Private Sub GenVarieteCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles GenVarieteCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=GenVarieteCheckedList, currentCheckedList:=CurrentGenVarieteCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
+    End Sub
+
+    Private Sub GenLocaliteCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles GenLocaliteCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=GenLocaliteCheckedList, currentCheckedList:=CurrentGenLocaliteCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
+    End Sub
+
+    Private Sub GenNiveauCheckedList_ItemCheck(sender As CheckedListBox, e As ItemCheckEventArgs) Handles GenNiveauCheckedList.ItemCheck
+        UpdateChartOnCheck(e, checkedList:=GenNiveauCheckedList, currentCheckedList:=CurrentGenNiveauCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
+    End Sub
+
     Private Sub GenClientCheckedList_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles GenClientCheckedList.ItemCheck
-        UpdateChartOnCheck(e, checkedList:=GenClientCheckedList, currentCheckedList:=CurrentClientCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
+        UpdateChartOnCheck(e, checkedList:=GenClientCheckedList, currentCheckedList:=CurrentGenClientCheckedList, updateCallBack:=AddressOf LoadCommandeProductionChart)
     End Sub
 
-    Private Sub CheckedListBox1_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles VarieteCommandeCheckedList.ItemCheck
-
+    Private Sub Timer11_Tick(sender As Object, e As EventArgs) Handles Timer11.Tick
+        CollapseElement(PanelVarieteGen, Timer11, isVarieteCollapsedGen)
     End Sub
+    Private Sub Timer12_Tick(sender As Object, e As EventArgs) Handles Timer12.Tick
+        CollapseElement(PanelLocaliteGen, Timer12, isLocaliteCollapsedGen)
+    End Sub
+    Private Sub Timer13_Tick(sender As Object, e As EventArgs) Handles Timer13.Tick
+        CollapseElement(PanelNiveauGen, Timer13, isNiveauCollapsedGen)
+    End Sub
+    Private Sub Timer14_Tick(sender As Object, e As EventArgs) Handles Timer14.Tick
+        CollapseElement(PanelClientGen, Timer14, isClientCollapsedGen)
+    End Sub
+    Private Sub Timer15_Tick(sender As Object, e As EventArgs) Handles Timer15.Tick
+        CollapseElement(PanelDateGen, Timer15, isDateCollapsedGen)
+    End Sub
+    Private Sub FiltrerVarieteGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerVarieteGen.CheckedChanged
+        Timer11.Start()
+        LoadCommandeProductionChart()
+    End Sub
+
+    Private Sub FiltrerLocaliteGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerLocaliteGen.CheckedChanged
+        Timer12.Start()
+        LoadCommandeProductionChart()
+    End Sub
+
+    Private Sub FiltrerNiveauGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerNiveauGen.CheckedChanged
+        Timer13.Start()
+        LoadCommandeProductionChart()
+    End Sub
+
+    Private Sub FiltrerClientGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerClientGen.CheckedChanged
+        Timer14.Start()
+        LoadCommandeProductionChart()
+    End Sub
+
+    Private Sub FiltrerDateGen_CheckedChanged(sender As Object, e As EventArgs) Handles FiltrerDateGen.CheckedChanged
+        Timer15.Start()
+        If FiltrerDateGen.Checked = False Then
+            LoadCommandeProductionChart()
+        End If
+    End Sub
+
 End Class

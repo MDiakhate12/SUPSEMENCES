@@ -447,7 +447,7 @@ Public Class FormCommandes
         End If
     End Sub
 
-    Private Sub AjouterContact_Click(sender As Object, e As EventArgs) Handles AjouterContact.Click
+    Private Sub AjouterContact_Click(sender As Object, e As EventArgs)
         'Dim result = MessageBox.Show("Vous n'avez pas encore enregistré un nouveau client." & Environment.NewLine & "Ajouter un contact existant ?", "Comment enregistrer", MessageBoxButtons.OK, MessageBoxIcon.
         AddNewContact()
     End Sub
@@ -556,16 +556,21 @@ Public Class FormCommandes
         LoadCommandesATraiter()
         LoadCommandesAEnlever()
         MessageBox.Show("Commande validée avec succés", "Commande validée", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        TraitementCommandeData.ClearSelection()
-        TraitementCommandeData.Rows(0).Selected = True
 
-
+        SelectFirstRow(TraitementCommandeData)
         'Catch ex As MysqlException
         '    MessageBox.Show("Veuillez reessayer plus tard svp.", "Erreur innattendue", MessageBoxButtons.OK, MessageBoxIcon.Error)
         '    Return
         'End Try
 
 
+    End Sub
+
+    Private Sub SelectFirstRow(dataTable As DataGridView)
+        dataTable.ClearSelection()
+        If dataTable.Rows.Count > 0 Then
+            dataTable.Rows(0).Selected = True
+        End If
     End Sub
 
 
@@ -613,8 +618,9 @@ Public Class FormCommandes
                 command.ExecuteNonQuery()
                 LoadCommandesATraiter()
                 MessageBox.Show("Commande rejetée avec succés", "Commande rejetée", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                TraitementCommandeData.ClearSelection()
-                TraitementCommandeData.Rows(0).Selected = True
+
+                SelectFirstRow(TraitementCommandeData)
+
             Else
                 Return
             End If
@@ -851,11 +857,8 @@ Public Class FormCommandes
 
                 LoadCommandesAEnlever()
                 MessageBox.Show("Commande enlevée avec succés", "Commande enlevée", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                GestionEnlevementData.ClearSelection()
 
-                If GestionEnlevementData.Rows.Count > 0 Then
-                    GestionEnlevementData.Rows(0).Selected = True
-                End If
+                SelectFirstRow(GestionEnlevementData)
             Else
                 Return
             End If
@@ -885,8 +888,9 @@ Public Class FormCommandes
 
             LoadCommandesAEnlever()
             MessageBox.Show("Enlèvement annulé avec succés!", "Enlèvelemnt annulé", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            GestionEnlevementData.ClearSelection()
-            GestionEnlevementData.Rows(0).Selected = True
+
+            SelectFirstRow(GestionEnlevementData)
+
         Else
             Return
         End If

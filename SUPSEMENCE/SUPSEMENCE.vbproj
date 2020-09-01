@@ -18,7 +18,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>C:\Users\HP\Desktop\SUPSEMENCES\</PublishUrl>
+    <PublishUrl>C:\Users\DELL\Desktop\SUPSEMENCES\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,10 +28,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -65,6 +65,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A3597CB8FEC282F85A3EA6484B1361CD75F0C210</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SUPSEMENCE_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
@@ -217,6 +229,17 @@
     <Compile Include="OldSpeculationParam.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RapportGlobal.Designer.vb">
+      <DependentUpon>RapportGlobal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RapportGlobal.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="semencesDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>semencesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserControl1.Designer.vb">
       <DependentUpon>UserControl1.vb</DependentUpon>
     </Compile>
@@ -276,6 +299,9 @@
     <EmbeddedResource Include="OldSpeculationParam.resx">
       <DependentUpon>OldSpeculationParam.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RapportGlobal.resx">
+      <DependentUpon>RapportGlobal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +320,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="semencesDataSet.xsc">
+      <DependentUpon>semencesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="semencesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>semencesDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="semencesDataSet.xss">
+      <DependentUpon>semencesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SUPSEMENCE_TemporaryKey.pfx" />
     <None Include="World.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: localhost    Database: semences
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `client` (
   `prenom` varchar(45) DEFAULT NULL,
   `nom` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'SenRIZ','SNR',1,NULL,NULL),(3,'AfricaRice','AR',0,NULL,NULL),(4,'AfricaRice','A.R',0,NULL,NULL),(5,'AFRICA RICE','AR',0,NULL,NULL),(6,'SENEGUINDIA','SNG',0,NULL,NULL),(7,'SENERICE','SNRICE',0,NULL,NULL),(8,'Compagnie National Agricole','CNRIA',0,NULL,NULL),(9,NULL,NULL,1,'Ndiawar ','DIOP'),(10,'Ndiawar DIOP','',1,'Ndiawar','DIOP'),(11,'Ali Ngouye NDIAYE','',1,'Ali Ngouye','NDIAYE'),(12,'Abdou Aziz Sy Dabakh NDIAYE','',1,'Abdou Aziz Sy Dabakh','NDIAYE'),(13,'Amadou BA','',1,'Amadou','BA'),(14,'Pathé Ndoye','',1,'Pathé','Ndoye'),(15,'GIE Beug Thiep','GBT',0,'',''),(16,'Sahel Industrie','SAI',0,'',''),(17,'Chez Fatou Sorgho','CFS',0,'',''),(18,'Modou Thiep Industrie','MDI',0,'',''),(19,'dead','fafe',0,'',''),(20,'DiafSociete','DS',0,'','');
+INSERT INTO `client` VALUES (1,'SenRIZ','SNR',1,NULL,NULL),(3,'AfricaRice','AR',0,NULL,NULL),(4,'AfricaRice','A.R',0,NULL,NULL),(5,'AFRICA RICE','AR',0,NULL,NULL),(6,'SENEGUINDIA','SNG',0,NULL,NULL),(7,'SENERICE','SNRICE',0,NULL,NULL),(8,'Compagnie National Agricole','CNRIA',0,NULL,NULL),(9,NULL,NULL,1,'Ndiawar ','DIOP'),(10,'Ndiawar DIOP','',1,'Ndiawar','DIOP'),(11,'Ali Ngouye NDIAYE','',1,'Ali Ngouye','NDIAYE'),(12,'Abdou Aziz Sy Dabakh NDIAYE','',1,'Abdou Aziz Sy Dabakh','NDIAYE'),(13,'Amadou BA','',1,'Amadou','BA'),(14,'Pathé Ndoye','',1,'Pathé','Ndoye'),(15,'GIE Beug Thiep','GBT',0,'',''),(16,'Sahel Industrie','SAI',0,'',''),(17,'Chez Fatou Sorgho','CFS',0,'',''),(18,'Modou Thiep Industrie','MDI',0,'',''),(19,'dead','fafe',0,'',''),(20,'DiafSociete','DS',0,'',''),(21,'SENEMIL','Societe Sengalaise de Mil',0,'',''),(22,'ATB','Ana Thieb Bi',0,'',''),(23,'Ana Mew Mi','AMM',0,'','');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +74,7 @@ CREATE TABLE `commande` (
   CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_production`) REFERENCES `production` (`id_production`),
   CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`magasin_enlevement`) REFERENCES `magasin` (`id_magasin`),
   CONSTRAINT `commande_ibfk_3` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `commande` (
 
 LOCK TABLES `commande` WRITE;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
-INSERT INTO `commande` VALUES (57,2600,260000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27',NULL,'2020-07-01',1,66,18),(58,900,135000,1,1,0,1,0,'2020-10-18','2020-08-27','2020-08-27',NULL,'2020-06-17',3,67,16),(59,2500,312500,0,1,0,1,0,'2020-10-25','2020-10-25','2020-08-27',NULL,'2020-06-18',1,69,17),(60,1600,240000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27','2020-08-28','2020-06-28',3,67,3);
+INSERT INTO `commande` VALUES (57,2600,260000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27',NULL,'2020-07-01',1,66,18),(58,900,135000,1,1,0,1,0,'2020-10-18','2020-08-27','2020-08-27',NULL,'2020-06-17',3,67,16),(59,2500,312500,0,1,0,1,0,'2020-10-25','2020-10-25','2020-08-27',NULL,'2020-06-18',1,69,17),(60,1600,240000,0,1,0,1,0,'2020-09-26','2020-09-26','2020-08-27','2020-08-28','2020-06-28',3,67,3),(61,1200,60000,1,1,0,1,0,'2020-09-06','2020-08-29','2020-08-29',NULL,'2020-08-20',2,75,20),(62,500,100000,0,0,0,0,0,'2020-09-17','2020-09-17','2020-09-01',NULL,'2020-08-20',2,73,23);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `contact` (
   CONSTRAINT `contact_ibfk_2` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`),
   CONSTRAINT `contact_ibfk_3` FOREIGN KEY (`id_magasin`) REFERENCES `magasin` (`id_magasin`),
   CONSTRAINT `contact_ibfk_4` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'Modou','Thiep','23456789','modou@thiep.com',1,NULL,NULL,18),(2,'a','b','c','d',24,NULL,NULL,20),(3,'Fall','Fatou','771234567','fatou@fall.com',1,NULL,NULL,3),(4,'Diallo','Mamadou','77123456','diallou@mamadou.com',1,NULL,NULL,20),(5,'Seck','Pathé','778951245','pathe@seck.com',1,1,NULL,NULL),(6,'Ndiaye','Modou','778946210','modou@ndiaye.com',2,1,NULL,NULL),(7,'adedae','aedaeda','88841661','adeda',2,1,NULL,NULL);
+INSERT INTO `contact` VALUES (1,'Modou','Thiep','23456789','modou@thiep.com',1,NULL,NULL,18),(2,'a','b','c','d',24,NULL,NULL,20),(3,'Fall','Fatou','771234567','fatou@fall.com',1,NULL,NULL,3),(4,'Diallo','Mamadou','77123456','diallou@mamadou.com',1,NULL,NULL,20),(5,'Seck','Pathé','778951245','pathe@seck.com',1,1,NULL,NULL),(6,'Ndiaye','Modou','778946210','modou@ndiaye.com',2,1,NULL,NULL),(7,'adedae','aedaeda','88841661','adeda',2,1,NULL,NULL),(8,'Diaf','Oumar','1234567890','AZERTYUIOP',2,1,NULL,NULL),(9,'Mew','Modou','123456789','Modou@Mew.com',2,NULL,NULL,23);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,9 +199,10 @@ CREATE TABLE `magasin` (
   `id_institution` int NOT NULL,
   `id_localisation` int NOT NULL,
   PRIMARY KEY (`id_magasin`),
+  UNIQUE KEY `nom_magasin` (`nom_magasin`,`id_localisation`,`id_institution`),
   KEY `id_localisation` (`id_localisation`),
   CONSTRAINT `magasin_ibfk_2` FOREIGN KEY (`id_localisation`) REFERENCES `localisation` (`id_localisation`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +211,7 @@ CREATE TABLE `magasin` (
 
 LOCK TABLES `magasin` WRITE;
 /*!40000 ALTER TABLE `magasin` DISABLE KEYS */;
-INSERT INTO `magasin` VALUES (1,'Entrepôt Ziguinchor',1,1),(2,'Entrepôt Kaolack',1,176),(3,'Entrepôt',1,6),(5,'Entrepôt Agnack Petit',1,2),(9,'Entrepôt Agnack Petit',1,271),(13,'Test',1,2),(14,'Test',1,2);
+INSERT INTO `magasin` VALUES (3,'Entrepôt',1,6),(5,'Entrepôt Agnack Petit',1,2),(9,'Entrepôt Agnack Petit',1,271),(15,'Entrepôt Kaffrine',1,845),(2,'Entrepôt Kaolack',1,176),(1,'Entrepôt Ziguinchor',1,1),(13,'Test',1,2);
 /*!40000 ALTER TABLE `magasin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +257,7 @@ CREATE TABLE `niveau_institution` (
   KEY `fk_niveau_idx` (`id_niveau`),
   CONSTRAINT `fk_institution` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`),
   CONSTRAINT `fk_niveau` FOREIGN KEY (`id_niveau`) REFERENCES `niveau_de_production` (`id_niveau`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +300,7 @@ CREATE TABLE `production` (
   CONSTRAINT `production_ibfk_3` FOREIGN KEY (`id_niveau_institution`) REFERENCES `niveau_institution` (`id_niveau_institution`),
   CONSTRAINT `production_ibfk_4` FOREIGN KEY (`id_variete_institution`) REFERENCES `variete_institution` (`id_variete_institution`),
   CONSTRAINT `production_ibfk_5` FOREIGN KEY (`id_institution`) REFERENCES `institution` (`id_institution`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +309,7 @@ CREATE TABLE `production` (
 
 LOCK TABLES `production` WRITE;
 /*!40000 ALTER TABLE `production` DISABLE KEYS */;
-INSERT INTO `production` VALUES (66,'2020-08-27',3300,100,2,1,2,18,1,500),(67,'2020-08-11',9300,150,6,3,2,19,1,8150),(68,'2020-06-01',7200,125,176,2,2,22,1,6700),(69,'2020-07-23',3100,125,2,1,2,24,1,100),(70,'2020-07-23',7500,150,176,2,2,27,1,6500),(71,'2020-07-23',4900,75,271,9,2,27,1,3900),(72,'2020-05-28',4000,100,6,3,2,26,1,3000);
+INSERT INTO `production` VALUES (66,'2020-08-27',3300,100,2,1,2,18,1,500),(67,'2020-08-11',9300,150,6,3,2,19,1,8150),(68,'2020-06-01',7200,125,176,2,2,22,1,6700),(69,'2020-07-23',3100,125,2,1,2,24,1,100),(71,'2020-07-23',4900,75,271,9,2,27,1,3900),(72,'2020-05-28',4000,100,6,3,2,26,1,3000),(73,'2020-03-29',4600,200,176,2,2,26,1,3600),(74,'2020-03-12',4200,75,271,9,3,27,1,3200),(75,'2020-06-24',4800,50,845,15,2,28,1,3800),(76,'2020-08-30',7000,75,271,9,2,18,1,6800),(77,'2020-08-30',3400,75,2,1,2,23,1,2900),(78,'2020-03-11',3000,50,271,9,2,30,1,2000),(79,'2020-08-30',2900,65,845,15,2,18,1,2700),(80,'2020-05-01',3000,115,845,15,2,30,1,2000);
 /*!40000 ALTER TABLE `production` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -489,4 +490,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-29 16:03:51
+-- Dump completed on 2020-09-01 17:54:55

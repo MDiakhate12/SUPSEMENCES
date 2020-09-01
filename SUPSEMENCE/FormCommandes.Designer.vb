@@ -50,7 +50,6 @@ Partial Class FormCommandes
         Me.Label10 = New System.Windows.Forms.Label()
         Me.DateExpressionBesoin = New System.Windows.Forms.DateTimePicker()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.AjouterContact = New System.Windows.Forms.Button()
         Me.LabelNomClient = New System.Windows.Forms.Label()
         Me.LabelPrenomClient = New System.Windows.Forms.Label()
         Me.PrenomClient = New System.Windows.Forms.TextBox()
@@ -73,6 +72,7 @@ Partial Class FormCommandes
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Speculation = New System.Windows.Forms.ComboBox()
+        Me.ProductionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Production = New System.Windows.Forms.ComboBox()
         Me.MagasinEnlevement = New System.Windows.Forms.ComboBox()
         Me.EnregistrerCommande = New System.Windows.Forms.Button()
@@ -153,7 +153,6 @@ Partial Class FormCommandes
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ModifierMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SupprimerMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.EnregistrementCommande.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -161,6 +160,7 @@ Partial Class FormCommandes
         CType(Me.NiveauinstitutionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Montant, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Quantite, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,7 +187,6 @@ Partial Class FormCommandes
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -274,7 +273,7 @@ Partial Class FormCommandes
         Me.Niveau.Location = New System.Drawing.Point(243, 16)
         Me.Niveau.Name = "Niveau"
         Me.Niveau.Size = New System.Drawing.Size(253, 24)
-        Me.Niveau.TabIndex = 37
+        Me.Niveau.TabIndex = 0
         '
         'Label10
         '
@@ -292,12 +291,11 @@ Partial Class FormCommandes
         Me.DateExpressionBesoin.Location = New System.Drawing.Point(243, 244)
         Me.DateExpressionBesoin.Name = "DateExpressionBesoin"
         Me.DateExpressionBesoin.Size = New System.Drawing.Size(253, 22)
-        Me.DateExpressionBesoin.TabIndex = 35
+        Me.DateExpressionBesoin.TabIndex = 6
         '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.AjouterContact)
         Me.Panel3.Controls.Add(Me.LabelNomClient)
         Me.Panel3.Controls.Add(Me.LabelPrenomClient)
         Me.Panel3.Controls.Add(Me.PrenomClient)
@@ -313,23 +311,6 @@ Partial Class FormCommandes
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(542, 489)
         Me.Panel3.TabIndex = 34
-        '
-        'AjouterContact
-        '
-        Me.AjouterContact.BackColor = System.Drawing.Color.White
-        Me.AjouterContact.FlatAppearance.BorderSize = 0
-        Me.AjouterContact.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.AjouterContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AjouterContact.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.AjouterContact.Image = CType(resources.GetObject("AjouterContact.Image"), System.Drawing.Image)
-        Me.AjouterContact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.AjouterContact.Location = New System.Drawing.Point(37, 185)
-        Me.AjouterContact.Margin = New System.Windows.Forms.Padding(2)
-        Me.AjouterContact.Name = "AjouterContact"
-        Me.AjouterContact.Size = New System.Drawing.Size(236, 57)
-        Me.AjouterContact.TabIndex = 42
-        Me.AjouterContact.Text = "      Ajouter contact"
-        Me.AjouterContact.UseVisualStyleBackColor = False
         '
         'LabelNomClient
         '
@@ -360,7 +341,7 @@ Partial Class FormCommandes
         Me.PrenomClient.Location = New System.Drawing.Point(37, 65)
         Me.PrenomClient.Name = "PrenomClient"
         Me.PrenomClient.Size = New System.Drawing.Size(236, 26)
-        Me.PrenomClient.TabIndex = 39
+        Me.PrenomClient.TabIndex = 0
         Me.PrenomClient.Visible = False
         '
         'NomClient
@@ -368,7 +349,7 @@ Partial Class FormCommandes
         Me.NomClient.Location = New System.Drawing.Point(36, 137)
         Me.NomClient.Name = "NomClient"
         Me.NomClient.Size = New System.Drawing.Size(236, 26)
-        Me.NomClient.TabIndex = 38
+        Me.NomClient.TabIndex = 1
         Me.NomClient.Visible = False
         '
         'Button1
@@ -379,11 +360,11 @@ Partial Class FormCommandes
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(34, 306)
+        Me.Button1.Location = New System.Drawing.Point(37, 185)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(461, 64)
-        Me.Button1.TabIndex = 34
+        Me.Button1.Size = New System.Drawing.Size(492, 64)
+        Me.Button1.TabIndex = 2
         Me.Button1.Text = "Enregistrer nouveau client"
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -559,7 +540,7 @@ Partial Class FormCommandes
         Me.Speculation.Location = New System.Drawing.Point(243, 94)
         Me.Speculation.Name = "Speculation"
         Me.Speculation.Size = New System.Drawing.Size(253, 24)
-        Me.Speculation.TabIndex = 24
+        Me.Speculation.TabIndex = 2
         '
         'Production
         '
@@ -569,7 +550,7 @@ Partial Class FormCommandes
         Me.Production.Location = New System.Drawing.Point(243, 56)
         Me.Production.Name = "Production"
         Me.Production.Size = New System.Drawing.Size(253, 24)
-        Me.Production.TabIndex = 23
+        Me.Production.TabIndex = 1
         '
         'MagasinEnlevement
         '
@@ -580,7 +561,7 @@ Partial Class FormCommandes
         Me.MagasinEnlevement.Location = New System.Drawing.Point(243, 316)
         Me.MagasinEnlevement.Name = "MagasinEnlevement"
         Me.MagasinEnlevement.Size = New System.Drawing.Size(253, 24)
-        Me.MagasinEnlevement.TabIndex = 22
+        Me.MagasinEnlevement.TabIndex = 8
         '
         'EnregistrerCommande
         '
@@ -596,7 +577,7 @@ Partial Class FormCommandes
         Me.EnregistrerCommande.Name = "EnregistrerCommande"
         Me.EnregistrerCommande.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
         Me.EnregistrerCommande.Size = New System.Drawing.Size(461, 64)
-        Me.EnregistrerCommande.TabIndex = 19
+        Me.EnregistrerCommande.TabIndex = 9
         Me.EnregistrerCommande.Text = " Enregistrer commande"
         Me.EnregistrerCommande.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.EnregistrerCommande.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -612,7 +593,7 @@ Partial Class FormCommandes
         Me.Client.Location = New System.Drawing.Point(243, 204)
         Me.Client.Name = "Client"
         Me.Client.Size = New System.Drawing.Size(253, 26)
-        Me.Client.TabIndex = 17
+        Me.Client.TabIndex = 5
         '
         'DateEnlevement
         '
@@ -620,7 +601,7 @@ Partial Class FormCommandes
         Me.DateEnlevement.Location = New System.Drawing.Point(243, 280)
         Me.DateEnlevement.Name = "DateEnlevement"
         Me.DateEnlevement.Size = New System.Drawing.Size(253, 22)
-        Me.DateEnlevement.TabIndex = 15
+        Me.DateEnlevement.TabIndex = 7
         '
         'Montant
         '
@@ -630,7 +611,7 @@ Partial Class FormCommandes
         Me.Montant.Maximum = New Decimal(New Integer() {-727379968, 232, 0, 0})
         Me.Montant.Name = "Montant"
         Me.Montant.Size = New System.Drawing.Size(253, 22)
-        Me.Montant.TabIndex = 14
+        Me.Montant.TabIndex = 4
         '
         'Quantite
         '
@@ -640,7 +621,7 @@ Partial Class FormCommandes
         Me.Quantite.Maximum = New Decimal(New Integer() {1000000000, 0, 0, 0})
         Me.Quantite.Name = "Quantite"
         Me.Quantite.Size = New System.Drawing.Size(253, 22)
-        Me.Quantite.TabIndex = 13
+        Me.Quantite.TabIndex = 3
         '
         'Commandes
         '
@@ -1647,6 +1628,7 @@ Partial Class FormCommandes
         Me.Panel3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Montant, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Quantite, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1679,7 +1661,6 @@ Partial Class FormCommandes
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.ProductionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1691,7 +1672,6 @@ Partial Class FormCommandes
     Friend WithEvents Label10 As Label
     Friend WithEvents DateExpressionBesoin As DateTimePicker
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents AjouterContact As Button
     Friend WithEvents LabelNomClient As Label
     Friend WithEvents LabelPrenomClient As Label
     Friend WithEvents PrenomClient As TextBox

@@ -23,19 +23,19 @@ Partial Class FormSpeculations
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSpeculations))
-        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.ProductionMainTabControl = New System.Windows.Forms.TabControl()
         Me.ProductionTab = New System.Windows.Forms.TabPage()
@@ -52,10 +52,11 @@ Partial Class FormSpeculations
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ChoixSpéculation = New System.Windows.Forms.ComboBox()
-        Me.VarieteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SpeculationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ZoneProduction = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ChoixVariete = New System.Windows.Forms.ComboBox()
+        Me.VarieteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label8 = New System.Windows.Forms.Label()
         Me.DateProductionLabel = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -89,7 +90,6 @@ Partial Class FormSpeculations
         Me.ModifierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SupprimerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Niveau_institutionTableAdapter = New SUPSEMENCE.semencesDataSetTableAdapters.niveau_institutionTableAdapter()
-        Me.SpeculationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ProductionMainTabControl.SuspendLayout()
         Me.ProductionTab.SuspendLayout()
         CType(Me.DataProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +100,7 @@ Partial Class FormSpeculations
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.AjouterProduction.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.SpeculationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VarieteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,14 +117,14 @@ Partial Class FormSpeculations
         CType(Me.VarieteinstitutionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuProduction.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
-        CType(Me.SpeculationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Splitter1
         '
         Me.Splitter1.Location = New System.Drawing.Point(0, 0)
+        Me.Splitter1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Splitter1.Name = "Splitter1"
-        Me.Splitter1.Size = New System.Drawing.Size(3, 748)
+        Me.Splitter1.Size = New System.Drawing.Size(4, 920)
         Me.Splitter1.TabIndex = 0
         Me.Splitter1.TabStop = False
         '
@@ -136,10 +137,11 @@ Partial Class FormSpeculations
         Me.ProductionMainTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProductionMainTabControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ProductionMainTabControl.ItemSize = New System.Drawing.Size(85, 40)
-        Me.ProductionMainTabControl.Location = New System.Drawing.Point(3, 0)
+        Me.ProductionMainTabControl.Location = New System.Drawing.Point(4, 0)
+        Me.ProductionMainTabControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ProductionMainTabControl.Name = "ProductionMainTabControl"
         Me.ProductionMainTabControl.SelectedIndex = 0
-        Me.ProductionMainTabControl.Size = New System.Drawing.Size(1209, 748)
+        Me.ProductionMainTabControl.Size = New System.Drawing.Size(1612, 920)
         Me.ProductionMainTabControl.TabIndex = 1
         '
         'ProductionTab
@@ -147,67 +149,69 @@ Partial Class FormSpeculations
         Me.ProductionTab.Controls.Add(Me.DataProduction)
         Me.ProductionTab.Controls.Add(Me.Panel4)
         Me.ProductionTab.Location = New System.Drawing.Point(4, 44)
+        Me.ProductionTab.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ProductionTab.Name = "ProductionTab"
-        Me.ProductionTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.ProductionTab.Size = New System.Drawing.Size(1201, 700)
+        Me.ProductionTab.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ProductionTab.Size = New System.Drawing.Size(1604, 872)
         Me.ProductionTab.TabIndex = 0
         Me.ProductionTab.Text = "Productions"
         Me.ProductionTab.UseVisualStyleBackColor = True
         '
         'DataProduction
         '
-        DataGridViewCellStyle37.BackColor = System.Drawing.Color.White
-        Me.DataProduction.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
+        Me.DataProduction.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
         Me.DataProduction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataProduction.BackgroundColor = System.Drawing.Color.White
         Me.DataProduction.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataProduction.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle38.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle38.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle38.NullValue = "-"
-        DataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataProduction.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle14.NullValue = "-"
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataProduction.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
         Me.DataProduction.ColumnHeadersHeight = 40
-        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle39.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataProduction.DefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataProduction.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataProduction.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataProduction.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.DataProduction.EnableHeadersVisualStyles = False
-        Me.DataProduction.Location = New System.Drawing.Point(3, 176)
-        Me.DataProduction.Margin = New System.Windows.Forms.Padding(2)
+        Me.DataProduction.Location = New System.Drawing.Point(4, 217)
+        Me.DataProduction.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DataProduction.Name = "DataProduction"
         Me.DataProduction.ReadOnly = True
         Me.DataProduction.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataProduction.RowHeadersDefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataProduction.RowHeadersDefaultCellStyle = DataGridViewCellStyle16
         Me.DataProduction.RowTemplate.Height = 24
         Me.DataProduction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataProduction.Size = New System.Drawing.Size(1195, 521)
+        Me.DataProduction.Size = New System.Drawing.Size(1596, 651)
         Me.DataProduction.TabIndex = 24
         '
         'Panel4
         '
         Me.Panel4.Controls.Add(Me.Panel5)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel4.Location = New System.Drawing.Point(3, 3)
+        Me.Panel4.Location = New System.Drawing.Point(4, 4)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1195, 173)
+        Me.Panel4.Size = New System.Drawing.Size(1596, 213)
         Me.Panel4.TabIndex = 26
         '
         'Panel5
@@ -219,10 +223,10 @@ Partial Class FormSpeculations
         Me.Panel5.Controls.Add(Me.Panel6)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel5.ForeColor = System.Drawing.Color.White
-        Me.Panel5.Location = New System.Drawing.Point(921, 0)
-        Me.Panel5.Margin = New System.Windows.Forms.Padding(2)
+        Me.Panel5.Location = New System.Drawing.Point(1231, 0)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(274, 173)
+        Me.Panel5.Size = New System.Drawing.Size(365, 213)
         Me.Panel5.TabIndex = 28
         '
         'Label1
@@ -231,8 +235,7 @@ Partial Class FormSpeculations
         Me.Label1.BackColor = System.Drawing.Color.Gainsboro
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(14, 9)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Location = New System.Drawing.Point(19, 11)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(138, 20)
         Me.Label1.TabIndex = 27
@@ -246,10 +249,10 @@ Partial Class FormSpeculations
         Me.ChoixRecherche.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ChoixRecherche.FormattingEnabled = True
         Me.ChoixRecherche.Items.AddRange(New Object() {"Variété", "Spéculation", "Niveau de production", "Magasin", "Quantite produite", "Prix unitaire"})
-        Me.ChoixRecherche.Location = New System.Drawing.Point(14, 39)
-        Me.ChoixRecherche.Margin = New System.Windows.Forms.Padding(2)
+        Me.ChoixRecherche.Location = New System.Drawing.Point(19, 48)
+        Me.ChoixRecherche.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ChoixRecherche.Name = "ChoixRecherche"
-        Me.ChoixRecherche.Size = New System.Drawing.Size(243, 28)
+        Me.ChoixRecherche.Size = New System.Drawing.Size(323, 28)
         Me.ChoixRecherche.TabIndex = 27
         Me.ChoixRecherche.Text = "Variété"
         '
@@ -261,10 +264,10 @@ Partial Class FormSpeculations
         Me.Panel6.Controls.Add(Me.ClearRechercher)
         Me.Panel6.Controls.Add(Me.PictureBox3)
         Me.Panel6.Controls.Add(Me.Recherche)
-        Me.Panel6.Location = New System.Drawing.Point(14, 100)
-        Me.Panel6.Margin = New System.Windows.Forms.Padding(2)
+        Me.Panel6.Location = New System.Drawing.Point(19, 123)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(246, 35)
+        Me.Panel6.Size = New System.Drawing.Size(327, 43)
         Me.Panel6.TabIndex = 22
         '
         'ClearRechercher
@@ -272,10 +275,10 @@ Partial Class FormSpeculations
         Me.ClearRechercher.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ClearRechercher.Dock = System.Windows.Forms.DockStyle.Right
         Me.ClearRechercher.Image = CType(resources.GetObject("ClearRechercher.Image"), System.Drawing.Image)
-        Me.ClearRechercher.Location = New System.Drawing.Point(207, 0)
-        Me.ClearRechercher.Margin = New System.Windows.Forms.Padding(2)
+        Me.ClearRechercher.Location = New System.Drawing.Point(276, 0)
+        Me.ClearRechercher.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ClearRechercher.Name = "ClearRechercher"
-        Me.ClearRechercher.Size = New System.Drawing.Size(37, 33)
+        Me.ClearRechercher.Size = New System.Drawing.Size(49, 41)
         Me.ClearRechercher.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.ClearRechercher.TabIndex = 4
         Me.ClearRechercher.TabStop = False
@@ -286,9 +289,9 @@ Partial Class FormSpeculations
         Me.PictureBox3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
         Me.PictureBox3.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(2)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox3.Size = New System.Drawing.Size(49, 41)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox3.TabIndex = 2
         Me.PictureBox3.TabStop = False
@@ -300,10 +303,10 @@ Partial Class FormSpeculations
         Me.Recherche.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Recherche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Recherche.ForeColor = System.Drawing.Color.White
-        Me.Recherche.Location = New System.Drawing.Point(48, 2)
-        Me.Recherche.Margin = New System.Windows.Forms.Padding(2)
+        Me.Recherche.Location = New System.Drawing.Point(55, 5)
+        Me.Recherche.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Recherche.Name = "Recherche"
-        Me.Recherche.Size = New System.Drawing.Size(184, 22)
+        Me.Recherche.Size = New System.Drawing.Size(245, 22)
         Me.Recherche.TabIndex = 0
         Me.Recherche.Text = "Rechercher"
         '
@@ -311,9 +314,10 @@ Partial Class FormSpeculations
         '
         Me.AjouterProduction.Controls.Add(Me.Panel1)
         Me.AjouterProduction.Location = New System.Drawing.Point(4, 44)
+        Me.AjouterProduction.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.AjouterProduction.Name = "AjouterProduction"
-        Me.AjouterProduction.Padding = New System.Windows.Forms.Padding(3)
-        Me.AjouterProduction.Size = New System.Drawing.Size(1201, 700)
+        Me.AjouterProduction.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AjouterProduction.Size = New System.Drawing.Size(1604, 872)
         Me.AjouterProduction.TabIndex = 1
         Me.AjouterProduction.Text = "Ajouter Nouvelle Production"
         Me.AjouterProduction.UseVisualStyleBackColor = True
@@ -342,9 +346,10 @@ Partial Class FormSpeculations
         Me.Panel1.Controls.Add(Me.PrixUnitaire)
         Me.Panel1.Controls.Add(Me.QuantiteProduite)
         Me.Panel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Panel1.Location = New System.Drawing.Point(230, 6)
+        Me.Panel1.Location = New System.Drawing.Point(307, 7)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(737, 544)
+        Me.Panel1.Size = New System.Drawing.Size(982, 669)
         Me.Panel1.TabIndex = 0
         '
         'Label2
@@ -352,7 +357,8 @@ Partial Class FormSpeculations
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(25, 21)
+        Me.Label2.Location = New System.Drawing.Point(33, 26)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(104, 20)
         Me.Label2.TabIndex = 24
@@ -364,17 +370,19 @@ Partial Class FormSpeculations
         Me.ChoixSpéculation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ChoixSpéculation.DataSource = Me.SpeculationBindingSource
         Me.ChoixSpéculation.FormattingEnabled = True
-        Me.ChoixSpéculation.Location = New System.Drawing.Point(235, 13)
+        Me.ChoixSpéculation.Location = New System.Drawing.Point(313, 16)
+        Me.ChoixSpéculation.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ChoixSpéculation.Name = "ChoixSpéculation"
-        Me.ChoixSpéculation.Size = New System.Drawing.Size(242, 28)
-        Me.ChoixSpéculation.TabIndex = 23
+        Me.ChoixSpéculation.Size = New System.Drawing.Size(321, 28)
+        Me.ChoixSpéculation.TabIndex = 0
         '
         'ZoneProduction
         '
         Me.ZoneProduction.AutoSize = True
         Me.ZoneProduction.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ZoneProduction.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.ZoneProduction.Location = New System.Drawing.Point(232, 307)
+        Me.ZoneProduction.Location = New System.Drawing.Point(309, 378)
+        Me.ZoneProduction.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ZoneProduction.Name = "ZoneProduction"
         Me.ZoneProduction.Size = New System.Drawing.Size(0, 13)
         Me.ZoneProduction.TabIndex = 22
@@ -385,7 +393,8 @@ Partial Class FormSpeculations
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(25, 73)
+        Me.Label9.Location = New System.Drawing.Point(33, 90)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(67, 20)
         Me.Label9.TabIndex = 20
@@ -397,17 +406,19 @@ Partial Class FormSpeculations
         Me.ChoixVariete.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ChoixVariete.DataSource = Me.VarieteBindingSource
         Me.ChoixVariete.FormattingEnabled = True
-        Me.ChoixVariete.Location = New System.Drawing.Point(235, 65)
+        Me.ChoixVariete.Location = New System.Drawing.Point(313, 80)
+        Me.ChoixVariete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ChoixVariete.Name = "ChoixVariete"
-        Me.ChoixVariete.Size = New System.Drawing.Size(242, 28)
-        Me.ChoixVariete.TabIndex = 19
+        Me.ChoixVariete.Size = New System.Drawing.Size(321, 28)
+        Me.ChoixVariete.TabIndex = 1
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(25, 412)
+        Me.Label8.Location = New System.Drawing.Point(33, 507)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(183, 20)
         Me.Label8.TabIndex = 18
@@ -418,7 +429,8 @@ Partial Class FormSpeculations
         Me.DateProductionLabel.AutoSize = True
         Me.DateProductionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateProductionLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.DateProductionLabel.Location = New System.Drawing.Point(25, 230)
+        Me.DateProductionLabel.Location = New System.Drawing.Point(33, 283)
+        Me.DateProductionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.DateProductionLabel.Name = "DateProductionLabel"
         Me.DateProductionLabel.Size = New System.Drawing.Size(163, 20)
         Me.DateProductionLabel.TabIndex = 16
@@ -429,7 +441,8 @@ Partial Class FormSpeculations
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(25, 284)
+        Me.Label5.Location = New System.Drawing.Point(33, 350)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(157, 20)
         Me.Label5.TabIndex = 15
@@ -440,7 +453,8 @@ Partial Class FormSpeculations
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(25, 352)
+        Me.Label6.Location = New System.Drawing.Point(33, 433)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(179, 20)
         Me.Label6.TabIndex = 14
@@ -451,7 +465,8 @@ Partial Class FormSpeculations
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(25, 182)
+        Me.Label3.Location = New System.Drawing.Point(33, 224)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(131, 20)
         Me.Label3.TabIndex = 13
@@ -462,7 +477,8 @@ Partial Class FormSpeculations
         Me.QuantiteProduiteLabel.AutoSize = True
         Me.QuantiteProduiteLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.QuantiteProduiteLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        Me.QuantiteProduiteLabel.Location = New System.Drawing.Point(25, 130)
+        Me.QuantiteProduiteLabel.Location = New System.Drawing.Point(33, 160)
+        Me.QuantiteProduiteLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.QuantiteProduiteLabel.Name = "QuantiteProduiteLabel"
         Me.QuantiteProduiteLabel.Size = New System.Drawing.Size(191, 20)
         Me.QuantiteProduiteLabel.TabIndex = 12
@@ -475,11 +491,11 @@ Partial Class FormSpeculations
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(29, 461)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button1.Location = New System.Drawing.Point(39, 567)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(448, 58)
-        Me.Button1.TabIndex = 10
+        Me.Button1.Size = New System.Drawing.Size(597, 71)
+        Me.Button1.TabIndex = 8
         Me.Button1.Text = "Enregistrer"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -488,17 +504,19 @@ Partial Class FormSpeculations
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
         Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(501, 0)
+        Me.Panel2.Location = New System.Drawing.Point(668, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(234, 542)
+        Me.Panel2.Size = New System.Drawing.Size(312, 667)
         Me.Panel2.TabIndex = 8
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(58, 202)
+        Me.PictureBox1.Location = New System.Drawing.Point(77, 249)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(134, 120)
+        Me.PictureBox1.Size = New System.Drawing.Size(179, 148)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
@@ -507,19 +525,21 @@ Partial Class FormSpeculations
         '
         Me.NiveauDeProduction.DataSource = Me.NiveauinstitutionBindingSource
         Me.NiveauDeProduction.FormattingEnabled = True
-        Me.NiveauDeProduction.Location = New System.Drawing.Point(235, 404)
+        Me.NiveauDeProduction.Location = New System.Drawing.Point(313, 497)
+        Me.NiveauDeProduction.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.NiveauDeProduction.Name = "NiveauDeProduction"
-        Me.NiveauDeProduction.Size = New System.Drawing.Size(242, 28)
-        Me.NiveauDeProduction.TabIndex = 6
+        Me.NiveauDeProduction.Size = New System.Drawing.Size(321, 28)
+        Me.NiveauDeProduction.TabIndex = 7
         '
         'Magasin
         '
         Me.Magasin.DataSource = Me.MagasinBindingSource
         Me.Magasin.FormattingEnabled = True
-        Me.Magasin.Location = New System.Drawing.Point(235, 344)
+        Me.Magasin.Location = New System.Drawing.Point(313, 423)
+        Me.Magasin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Magasin.Name = "Magasin"
-        Me.Magasin.Size = New System.Drawing.Size(242, 28)
-        Me.Magasin.TabIndex = 5
+        Me.Magasin.Size = New System.Drawing.Size(321, 28)
+        Me.Magasin.TabIndex = 6
         '
         'Localisation
         '
@@ -527,10 +547,11 @@ Partial Class FormSpeculations
         Me.Localisation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Localisation.DataSource = Me.LocalisationBindingSource
         Me.Localisation.FormattingEnabled = True
-        Me.Localisation.Location = New System.Drawing.Point(235, 276)
+        Me.Localisation.Location = New System.Drawing.Point(313, 340)
+        Me.Localisation.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Localisation.Name = "Localisation"
-        Me.Localisation.Size = New System.Drawing.Size(242, 28)
-        Me.Localisation.TabIndex = 4
+        Me.Localisation.Size = New System.Drawing.Size(321, 28)
+        Me.Localisation.TabIndex = 5
         '
         'LocalisationBindingSource
         '
@@ -544,35 +565,39 @@ Partial Class FormSpeculations
         '
         'DateProduction
         '
-        Me.DateProduction.Location = New System.Drawing.Point(235, 224)
+        Me.DateProduction.Location = New System.Drawing.Point(313, 276)
+        Me.DateProduction.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateProduction.Name = "DateProduction"
-        Me.DateProduction.Size = New System.Drawing.Size(242, 26)
-        Me.DateProduction.TabIndex = 3
+        Me.DateProduction.Size = New System.Drawing.Size(321, 26)
+        Me.DateProduction.TabIndex = 4
         '
         'PrixUnitaire
         '
         Me.PrixUnitaire.Increment = New Decimal(New Integer() {25, 0, 0, 0})
-        Me.PrixUnitaire.Location = New System.Drawing.Point(235, 176)
+        Me.PrixUnitaire.Location = New System.Drawing.Point(313, 217)
+        Me.PrixUnitaire.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PrixUnitaire.Maximum = New Decimal(New Integer() {1215752192, 23, 0, 0})
         Me.PrixUnitaire.Name = "PrixUnitaire"
-        Me.PrixUnitaire.Size = New System.Drawing.Size(242, 26)
-        Me.PrixUnitaire.TabIndex = 2
+        Me.PrixUnitaire.Size = New System.Drawing.Size(323, 26)
+        Me.PrixUnitaire.TabIndex = 3
         '
         'QuantiteProduite
         '
         Me.QuantiteProduite.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.QuantiteProduite.Location = New System.Drawing.Point(235, 124)
+        Me.QuantiteProduite.Location = New System.Drawing.Point(313, 153)
+        Me.QuantiteProduite.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.QuantiteProduite.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.QuantiteProduite.Name = "QuantiteProduite"
-        Me.QuantiteProduite.Size = New System.Drawing.Size(242, 26)
-        Me.QuantiteProduite.TabIndex = 1
+        Me.QuantiteProduite.Size = New System.Drawing.Size(323, 26)
+        Me.QuantiteProduite.TabIndex = 2
         '
         'EtatStocksSpeculation
         '
         Me.EtatStocksSpeculation.Location = New System.Drawing.Point(4, 44)
+        Me.EtatStocksSpeculation.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.EtatStocksSpeculation.Name = "EtatStocksSpeculation"
-        Me.EtatStocksSpeculation.Padding = New System.Windows.Forms.Padding(3)
-        Me.EtatStocksSpeculation.Size = New System.Drawing.Size(1201, 700)
+        Me.EtatStocksSpeculation.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.EtatStocksSpeculation.Size = New System.Drawing.Size(1604, 873)
         Me.EtatStocksSpeculation.TabIndex = 2
         Me.EtatStocksSpeculation.Text = "Etat des stocks des spéculations"
         Me.EtatStocksSpeculation.UseVisualStyleBackColor = True
@@ -582,104 +607,105 @@ Partial Class FormSpeculations
         Me.EtatStockVariete.Controls.Add(Me.DataStockVarieteTab)
         Me.EtatStockVariete.Controls.Add(Me.DataStockVariete)
         Me.EtatStockVariete.Location = New System.Drawing.Point(4, 44)
+        Me.EtatStockVariete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.EtatStockVariete.Name = "EtatStockVariete"
-        Me.EtatStockVariete.Size = New System.Drawing.Size(1201, 700)
+        Me.EtatStockVariete.Size = New System.Drawing.Size(1604, 873)
         Me.EtatStockVariete.TabIndex = 3
         Me.EtatStockVariete.Text = "Etat des stock variété"
         Me.EtatStockVariete.UseVisualStyleBackColor = True
         '
         'DataStockVarieteTab
         '
-        DataGridViewCellStyle41.BackColor = System.Drawing.Color.White
-        Me.DataStockVarieteTab.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle41
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
+        Me.DataStockVarieteTab.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.DataStockVarieteTab.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataStockVarieteTab.BackgroundColor = System.Drawing.Color.White
         Me.DataStockVarieteTab.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataStockVarieteTab.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle42.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle42.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle42.NullValue = "-"
-        DataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataStockVarieteTab.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle42
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle18.NullValue = "-"
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataStockVarieteTab.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
         Me.DataStockVarieteTab.ColumnHeadersHeight = 40
-        DataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle43.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataStockVarieteTab.DefaultCellStyle = DataGridViewCellStyle43
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataStockVarieteTab.DefaultCellStyle = DataGridViewCellStyle19
         Me.DataStockVarieteTab.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataStockVarieteTab.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.DataStockVarieteTab.EnableHeadersVisualStyles = False
         Me.DataStockVarieteTab.Location = New System.Drawing.Point(0, 0)
-        Me.DataStockVarieteTab.Margin = New System.Windows.Forms.Padding(2)
+        Me.DataStockVarieteTab.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DataStockVarieteTab.Name = "DataStockVarieteTab"
         Me.DataStockVarieteTab.ReadOnly = True
         Me.DataStockVarieteTab.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle44.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataStockVarieteTab.RowHeadersDefaultCellStyle = DataGridViewCellStyle44
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataStockVarieteTab.RowHeadersDefaultCellStyle = DataGridViewCellStyle20
         Me.DataStockVarieteTab.RowTemplate.Height = 24
         Me.DataStockVarieteTab.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataStockVarieteTab.Size = New System.Drawing.Size(1201, 700)
+        Me.DataStockVarieteTab.Size = New System.Drawing.Size(1604, 873)
         Me.DataStockVarieteTab.TabIndex = 27
         '
         'DataStockVariete
         '
-        DataGridViewCellStyle45.BackColor = System.Drawing.Color.White
-        Me.DataStockVariete.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle45
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
+        Me.DataStockVariete.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
         Me.DataStockVariete.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataStockVariete.BackgroundColor = System.Drawing.Color.White
         Me.DataStockVariete.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataStockVariete.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle46.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle46.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle46.NullValue = "-"
-        DataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
-        DataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataStockVariete.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle46
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle22.NullValue = "-"
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(76, Byte), Integer))
+        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataStockVariete.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
         Me.DataStockVariete.ColumnHeadersHeight = 40
-        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle47.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataStockVariete.DefaultCellStyle = DataGridViewCellStyle47
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataStockVariete.DefaultCellStyle = DataGridViewCellStyle23
         Me.DataStockVariete.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataStockVariete.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.DataStockVariete.EnableHeadersVisualStyles = False
         Me.DataStockVariete.Location = New System.Drawing.Point(0, 0)
-        Me.DataStockVariete.Margin = New System.Windows.Forms.Padding(2)
+        Me.DataStockVariete.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DataStockVariete.Name = "DataStockVariete"
         Me.DataStockVariete.ReadOnly = True
         Me.DataStockVariete.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle48.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle48.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
-        DataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataStockVariete.RowHeadersDefaultCellStyle = DataGridViewCellStyle48
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(118, Byte), Integer), CType(CType(209, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataStockVariete.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
         Me.DataStockVariete.RowTemplate.Height = 24
         Me.DataStockVariete.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataStockVariete.Size = New System.Drawing.Size(1201, 700)
+        Me.DataStockVariete.Size = New System.Drawing.Size(1604, 873)
         Me.DataStockVariete.TabIndex = 25
         '
         'SemencesDataSet
@@ -739,13 +765,13 @@ Partial Class FormSpeculations
         '
         'FormSpeculations
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1212, 748)
+        Me.ClientSize = New System.Drawing.Size(1616, 920)
         Me.Controls.Add(Me.ProductionMainTabControl)
         Me.Controls.Add(Me.Splitter1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "FormSpeculations"
         Me.Text = "FormProduction"
         Me.ProductionMainTabControl.ResumeLayout(False)
@@ -761,6 +787,7 @@ Partial Class FormSpeculations
         Me.AjouterProduction.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.SpeculationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VarieteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -777,7 +804,6 @@ Partial Class FormSpeculations
         CType(Me.VarieteinstitutionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuProduction.ResumeLayout(False)
         Me.ContextMenuStrip2.ResumeLayout(False)
-        CType(Me.SpeculationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

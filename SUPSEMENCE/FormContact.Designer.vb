@@ -32,7 +32,6 @@ Partial Class FormContact
         Me.LocalisationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SemencesDataSet = New SUPSEMENCE.semencesDataSet()
         Me.Client = New System.Windows.Forms.ComboBox()
-        Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.NomLabel = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -43,17 +42,18 @@ Partial Class FormContact
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Enregistrer = New System.Windows.Forms.Button()
         Me.LocalisationTableAdapter = New SUPSEMENCE.semencesDataSetTableAdapters.localisationTableAdapter()
+        Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ClientTableAdapter = New SUPSEMENCE.semencesDataSetTableAdapters.clientTableAdapter()
         CType(Me.LocalisationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SemencesDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Nom
         '
-        Me.Nom.Location = New System.Drawing.Point(131, 102)
+        Me.Nom.Location = New System.Drawing.Point(131, 136)
         Me.Nom.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Nom.Name = "Nom"
         Me.Nom.Size = New System.Drawing.Size(223, 26)
@@ -61,37 +61,37 @@ Partial Class FormContact
         '
         'Prenom
         '
-        Me.Prenom.Location = New System.Drawing.Point(131, 142)
+        Me.Prenom.Location = New System.Drawing.Point(131, 95)
         Me.Prenom.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Prenom.Name = "Prenom"
         Me.Prenom.Size = New System.Drawing.Size(223, 26)
-        Me.Prenom.TabIndex = 2
+        Me.Prenom.TabIndex = 0
         '
         'Telephone
         '
-        Me.Telephone.Location = New System.Drawing.Point(131, 182)
+        Me.Telephone.Location = New System.Drawing.Point(131, 177)
         Me.Telephone.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Telephone.Name = "Telephone"
         Me.Telephone.Size = New System.Drawing.Size(223, 26)
-        Me.Telephone.TabIndex = 4
+        Me.Telephone.TabIndex = 2
         '
         'Mail
         '
-        Me.Mail.Location = New System.Drawing.Point(131, 222)
+        Me.Mail.Location = New System.Drawing.Point(131, 218)
         Me.Mail.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Mail.Name = "Mail"
         Me.Mail.Size = New System.Drawing.Size(223, 26)
-        Me.Mail.TabIndex = 5
+        Me.Mail.TabIndex = 3
         '
         'Localisation
         '
         Me.Localisation.DataSource = Me.LocalisationBindingSource
         Me.Localisation.DisplayMember = "village"
         Me.Localisation.FormattingEnabled = True
-        Me.Localisation.Location = New System.Drawing.Point(131, 262)
+        Me.Localisation.Location = New System.Drawing.Point(131, 259)
         Me.Localisation.Name = "Localisation"
         Me.Localisation.Size = New System.Drawing.Size(223, 28)
-        Me.Localisation.TabIndex = 6
+        Me.Localisation.TabIndex = 4
         Me.Localisation.ValueMember = "id_localisation"
         '
         'LocalisationBindingSource
@@ -109,21 +109,16 @@ Partial Class FormContact
         Me.Client.DataSource = Me.ClientBindingSource
         Me.Client.DisplayMember = "nom_complet_structure"
         Me.Client.FormattingEnabled = True
-        Me.Client.Location = New System.Drawing.Point(131, 304)
+        Me.Client.Location = New System.Drawing.Point(131, 302)
         Me.Client.Name = "Client"
         Me.Client.Size = New System.Drawing.Size(223, 28)
-        Me.Client.TabIndex = 7
+        Me.Client.TabIndex = 5
         Me.Client.ValueMember = "id_client"
-        '
-        'ClientBindingSource
-        '
-        Me.ClientBindingSource.DataMember = "client"
-        Me.ClientBindingSource.DataSource = Me.SemencesDataSet
         '
         'NomLabel
         '
         Me.NomLabel.AutoSize = True
-        Me.NomLabel.Location = New System.Drawing.Point(25, 108)
+        Me.NomLabel.Location = New System.Drawing.Point(25, 142)
         Me.NomLabel.Name = "NomLabel"
         Me.NomLabel.Size = New System.Drawing.Size(42, 20)
         Me.NomLabel.TabIndex = 8
@@ -132,7 +127,7 @@ Partial Class FormContact
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(25, 147)
+        Me.Label2.Location = New System.Drawing.Point(25, 101)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(64, 20)
         Me.Label2.TabIndex = 9
@@ -141,7 +136,7 @@ Partial Class FormContact
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(25, 186)
+        Me.Label3.Location = New System.Drawing.Point(25, 183)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(84, 20)
         Me.Label3.TabIndex = 10
@@ -150,7 +145,7 @@ Partial Class FormContact
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 225)
+        Me.Label4.Location = New System.Drawing.Point(25, 224)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(37, 20)
         Me.Label4.TabIndex = 11
@@ -159,7 +154,7 @@ Partial Class FormContact
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(25, 264)
+        Me.Label5.Location = New System.Drawing.Point(25, 267)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(64, 20)
         Me.Label5.TabIndex = 12
@@ -168,7 +163,7 @@ Partial Class FormContact
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(25, 303)
+        Me.Label6.Location = New System.Drawing.Point(25, 310)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 20)
         Me.Label6.TabIndex = 13
@@ -205,13 +200,18 @@ Partial Class FormContact
         Me.Enregistrer.Margin = New System.Windows.Forms.Padding(2)
         Me.Enregistrer.Name = "Enregistrer"
         Me.Enregistrer.Size = New System.Drawing.Size(325, 58)
-        Me.Enregistrer.TabIndex = 15
+        Me.Enregistrer.TabIndex = 6
         Me.Enregistrer.Text = "Enregistrer"
         Me.Enregistrer.UseVisualStyleBackColor = False
         '
         'LocalisationTableAdapter
         '
         Me.LocalisationTableAdapter.ClearBeforeFill = True
+        '
+        'ClientBindingSource
+        '
+        Me.ClientBindingSource.DataMember = "client"
+        Me.ClientBindingSource.DataSource = Me.SemencesDataSet
         '
         'ClientTableAdapter
         '
@@ -246,9 +246,9 @@ Partial Class FormContact
         Me.Text = "Contact"
         CType(Me.LocalisationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SemencesDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

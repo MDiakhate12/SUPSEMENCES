@@ -4,6 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class FormParametres
     Private connection As MySqlConnection = DBConnection.connection
     Private currentLocalisationId As Integer
+    Private CurrentNiveauxCheckedList As CheckedListBox = New CheckedListBox()
 
     Private Sub FormParametres_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: cette ligne de code charge les données dans la table 'SemencesDataSet.niveau_de_production'. Vous pouvez la déplacer ou la supprimer selon les besoins.
@@ -231,7 +232,7 @@ Public Class FormParametres
     End Sub
 
     Private Sub RechercheVariete_TextChanged(sender As Object, e As EventArgs) Handles RechercheVariete.TextChanged
-        If RechercheVariete.Text = "Rechercher" Then
+        If RechercheVariete.Text = "Rechercher" Or RechercheVariete.Text = "" Then
             Return
         End If
 
@@ -254,7 +255,7 @@ Public Class FormParametres
 
     Private Sub RechercherVariete(queryValue, queryField)
 
-        Dim query As String = $"SELECT id_variete, nom_variete, nom_speculation, longueur_cycle, nom_zone, stock_de_securite
+        Dim query As String = $"SELECT variete.id_variete, nom_variete, nom_speculation, longueur_cycle, nom_zone, stock_de_securite
                                 FROM variete_institution
                                 inner join variete on variete.id_variete=variete_institution.id_variete
                                 inner join zone_agro_ecologique on zone_agro_ecologique.id_zone=variete.id_zone
@@ -609,7 +610,10 @@ Public Class FormParametres
 
     End Sub
     Private Sub FillNiveaux()
-        Dim query = "select nom_niveau from niveau_institution inner join niveau_de_production n on n.id_niveau=niveau_institution.id_niveau where id_institution=@id_institution"
+        Dim query = "select nom_niveau 
+                     from niveau_institution 
+                     inner join niveau_de_production n on n.id_niveau=niveau_institution.id_niveau 
+                     where id_institution=@id_institution"
 
         Dim command = New MySqlCommand(query, connection)
         command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
@@ -623,9 +627,42 @@ Public Class FormParametres
             checkbox.Enabled = False
         End While
         reader.Close()
+
+        'query = "select nom_niveau 
+        '             from niveau_de_production"
+
+        'FillCheckedList(
+        '    query:=query,
+        '    checkedList:=NiveauxCheckedList,
+        '    currentCheckedList:=CurrentNiveauxCheckedList,
+        '    columnName:="nom_niveau"
+        '    )
+    End Sub
+    Private Sub FillCheckedList(query As String, checkedList As CheckedListBox, currentCheckedList As CheckedListBox, Optional columnName As String = "nom_variete", Optional defaultState As Boolean = False)
+
+        If connection.State = ConnectionState.Closed Then
+            Return
+        End If
+
+        Dim command = New MySqlCommand(query, connection)
+
+        command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+
+        Dim reader = command.ExecuteReader()
+
+        checkedList.Items.Clear()
+        currentCheckedList.Items.Clear()
+
+        While reader.Read()
+            checkedList.Items.Add(reader.GetString(columnName), defaultState)
+            currentCheckedList.Items.Add(reader.GetString(columnName), defaultState)
+        End While
+
+        reader.Close()
+
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub EnregistrerNiveaux_Click(sender As Object, e As EventArgs) Handles EnregistrerNiveaux.Click
         Dim items = ""
         For Each checkBox As CheckBox In GroupBox1.Controls
             If checkBox.Checked Then
@@ -702,6 +739,55 @@ Public Class FormParametres
         FillChoixLocalite(LocaliteInstitutionBindingSource, LocaliteInstitution, RegionInstitution, CommuneIntitution)
     End Sub
 
+    'Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    '    Dim items As Dictionary(Of String, Integer) = New Dictionary(Of String, Integer)()
+
+
+    '    Dim query = "select id_niveau, nom_niveau 
+    '                 from niveau_de_production
+    '                 where ()"
+
+    '    query = InsertFilter(query, NiveauxCheckedList, "nom_niveau")
+    '    MessageBox.Show(query)
+    '    Dim command = New MySqlCommand(query, connection)
+    '    'command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+    '    Dim reader = command.ExecuteReader()
+
+    '    While reader.Read()
+    '        items.Add(reader.GetString("nom_niveau"), reader.GetUInt64("id_niveau"))
+    '    End While
+    '    reader.Close()
+
+    '    query = "delete from niveau_institution;
+    '                 insert into niveau_institution(id_niveau, nom_niveau, id_institution) values "
+
+    '    query = InsertValuesFilter(query, items, DBConnection.id_institution)
+    '    MessageBox.Show(query)
+    '    command = New MySqlCommand(query, connection)
+    '    command.Parameters.AddWithValue("@id_institution", DBConnection.id_institution)
+    '    command.ExecuteNonQuery()
+    'End Sub
+    'Private Function InsertFilter(query As String, CurrentCheckedList As CheckedListBox, columnName As String)
+    '    Return query.Insert(query.LastIndexOf(")"), $" {columnName} in ({GetCheckedValues(CurrentCheckedList)}) ")
+    'End Function
+
+    'Private Function InsertValuesFilter(query As String, items As Dictionary(Of String, Integer), id_institution As Integer)
+    '    For Each item In items
+    '        query = query.Insert(query.LastIndexOf(" "), $" ('{item.Key}', {item.Value}, {id_institution}), ")
+    '    Next
+    '    Return query.Substring(0, query.LastIndexOf(","))
+    'End Function
+    'Private Function GetCheckedValues(checkedList As CheckedListBox)
+    '    Dim values = ""
+    '    Dim items = checkedList.CheckedItems
+
+    '    If items.Count > 0 Then
+    '        For Each item In items
+    '            values = $"{values}, '{item}'"
+    '        Next
+    '    End If
+    '    Return values.Substring(2)
+    'End Function
     'Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
 
     'End Sub

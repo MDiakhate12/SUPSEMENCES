@@ -31,15 +31,16 @@ Public Class FormStockCard
     Private Sub OpenVariete(Optional id = "")
         Dim getQuantiteSpeculation As String
         If (id Is String.Empty) Then
-            getQuantiteSpeculation = "select nom_variete, quantite_produite, quantite_disponible,  stock_de_securite, nom_speculation
+            getQuantiteSpeculation = "select nom_variete, sum(quantite_produite) quantite_produite, sum(quantite_disponible) quantite_disponible,  stock_de_securite, nom_speculation
                                         from production
                                         inner join variete_institution on variete_institution.id_variete_institution=production.id_variete_institution
                                         inner join variete on variete.id_variete=variete_institution.id_variete
                                         inner join speculation on speculation.id_speculation=variete.id_speculation
                                         where production.id_institution=@id_institution 
                                         group by nom_variete"
+
         Else
-            getQuantiteSpeculation = "select  nom_variete, quantite_produite, quantite_disponible,  stock_de_securite, nom_speculation
+            getQuantiteSpeculation = "select  nom_variete, sum(quantite_produite) quantite_produite, sum(quantite_disponible) quantite_disponible,  stock_de_securite, nom_speculation
                                         from production
                                         inner join variete_institution on variete_institution.id_variete_institution=production.id_variete_institution
                                         inner join variete on variete.id_variete=variete_institution.id_variete

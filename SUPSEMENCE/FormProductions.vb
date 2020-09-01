@@ -115,8 +115,8 @@ Public Class FormSpeculations
         Dim getProduction = "select id_production, nom_variete, nom_speculation, nom_niveau, date_de_production, nom_magasin, departement, quantite_produite, prix_unitaire
                              from production p
                              inner join magasin m on m.id_magasin=p.id_magasin
-                             join niveau_institution on p.id_niveau_institution=niveau_institution.id_niveau_institution
-                             join niveau_de_production on niveau_institution.id_niveau=niveau_de_production.id_niveau
+                             inner join niveau_institution on p.id_niveau_institution=niveau_institution.id_niveau_institution
+                             inner join niveau_de_production on niveau_institution.id_niveau=niveau_de_production.id_niveau
                              inner join variete_institution vi on vi.id_variete_institution=p.id_variete_institution
                              inner join variete v on v.id_variete = vi.id_variete
                              inner join speculation s on s.id_speculation = v.id_speculation
@@ -138,7 +138,7 @@ Public Class FormSpeculations
     End Sub
 
     Private Sub LoadStockVariete()
-        Dim getProduction = "select nom_variete, nom_speculation, quantite_produite, quantite_disponible, stock_de_securite
+        Dim getProduction = "select nom_variete, nom_speculation, sum(quantite_produite) quantite_produite, sum(quantite_disponible) quantite_disponible, stock_de_securite
                              from production
                              inner join variete_institution on variete_institution.id_variete_institution=production.id_variete_institution
                              inner join variete on variete.id_variete=variete_institution.id_variete
@@ -286,19 +286,19 @@ Public Class FormSpeculations
     End Sub
 
 
-    Private Sub Recherche_GotFocus(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub Recherche_GotFocus(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Recherche.GotFocus
         If Recherche.Text = "Rechercher" Then
             Recherche.Text = ""
         End If
     End Sub
 
-    Private Sub Recherche_LostFocus(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub Recherche_LostFocus(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Recherche.LostFocus
         If Recherche.Text = "" Then
             Recherche.Text = "Rechercher"
         End If
     End Sub
 
-    Private Sub Recherche_TextChanged(sender As Object, e As EventArgs)
+    Private Sub Recherche_TextChanged(sender As Object, e As EventArgs) Handles Recherche.TextChanged
         If Recherche.Text = "Rechercher" Then
             Return
         Else
@@ -354,7 +354,7 @@ Public Class FormSpeculations
         End If
     End Sub
 
-    Private Sub ClearRechercher_Click(sender As Object, e As EventArgs)
+    Private Sub ClearRechercher_Click(sender As Object, e As EventArgs) Handles ClearRechercher.Click
         If Not Recherche.Text.Equals("") Then
             Recherche.Clear()
         End If
@@ -497,5 +497,9 @@ Public Class FormSpeculations
 
     Private Sub ChoixSpéculation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ChoixSpéculation.SelectedIndexChanged
         LoadChoixVariete()
+    End Sub
+
+    Private Sub ClearRechercher_Click_1(sender As Object, e As EventArgs) Handles ClearRechercher.Click
+
     End Sub
 End Class
