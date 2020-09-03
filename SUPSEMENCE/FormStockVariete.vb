@@ -1,20 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class FormStockVariete
+    Private connection As MySqlConnection = DBConnection.connection
 
     Private Sub FormStockVariete_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddStockVariete()
     End Sub
-    Private Sub AddStockVariete(Optional connectionEntry = Nothing)
-        Dim connection As MySqlConnection
-
-        If (connectionEntry Is Nothing) Then
-            connection = New MySqlConnection(DBConnection.connectionString)
-            connection.Open()
-        Else
-            connection = connectionEntry
-        End If
-
+    Private Sub AddStockVariete()
 
         Dim getQuantiteSpeculation = "select nom_variete, nom_speculation, sum(quantite_produite) quantite_totale, stock_de_securite
                                         from production, variete_institution, variete, speculation 
@@ -42,10 +34,6 @@ Public Class FormStockVariete
 
             AddCard(image, label, quantite, "(" & nom_speculation & ")", stockDeSecurite)
         End While
-
-        If (connectionEntry Is Nothing) Then
-            connection.Close()
-        End If
 
     End Sub
     Private Sub AddCard(image As Drawing.Image, label As String, quantite As String, Optional labelSpeculation As String = "", Optional stockDeSecurite As String = "")

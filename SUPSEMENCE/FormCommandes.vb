@@ -152,9 +152,6 @@ Public Class FormCommandes
     Private Sub LoadStocks()
         Dim connection As MySqlConnection
 
-
-        connection = New MySqlConnection(DBConnection.connectionString)
-
         Dim getQuantiteSpeculation = "select nom_variete, nom_speculation, sum(quantite_produite) quantite_totale, stock_de_securite
                                         from production, variete_institution, variete, speculation 
                                         where (
